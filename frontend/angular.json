@@ -56,10 +56,12 @@
           },
           "configurations": {
             "production": {
-              "fileReplacements": [{
-                "replace": "src/environments/environment.ts",
-                "with": "src/environments/environment.prod.ts"
-              }],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
@@ -68,7 +70,8 @@
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
-              "budgets": [{
+              "budgets": [
+                {
                   "type": "initial",
                   "maximumWarning": "3mb",
                   "maximumError": "5mb"
@@ -144,5 +147,8 @@
       }
     }
   },
-  "defaultProject": "wipe-admin"
+  "defaultProject": "wipe-admin",
+  "cli": {
+    "analytics": false
+  }
 }

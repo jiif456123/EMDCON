@@ -1,4 +1,8 @@
 import { Component, OnInit } from "@angular/core";
+import { Chat } from 'src/app/models/chat.model';
+import { User } from 'src/app/models/user.model';
+import { ChatService } from 'src/app/services/chat/chat.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { SidebarService } from "../sidebar/sidebar.service";
 
 @Component({
@@ -7,7 +11,16 @@ import { SidebarService } from "../sidebar/sidebar.service";
   styleUrls: ["./navbar.component.scss"],
 })
 export class NavbarComponent implements OnInit {
-  constructor(public sidebarservice: SidebarService) {}
+  usuario: User;
+
+  rol: string;
+  idUser: string;
+  lConversacion: Chat[];
+  
+  constructor(
+    public sidebarservice: SidebarService,
+    private usuarioService: UsuarioService,
+    private chatService: ChatService) {}
 
   toggleSidebar() {
     this.sidebarservice.setSidebarState(!this.sidebarservice.getSidebarState());
@@ -39,5 +52,26 @@ export class NavbarComponent implements OnInit {
     this.sidebarservice.setSidebarState(true);
   }
 
-  ngOnInit() {}
+  cerrarSesion(){
+    this.usuarioService.logout();
+  }
+  ngOnInit() {
+    this.usuario =  JSON.parse(localStorage.getItem('usuario'));
+    console.log(this.usuario)
+    this.rol = JSON.parse(localStorage.getItem('rol'));
+    this.idUser = localStorage.getItem('id');
+    if (this.rol == 'RESIDENTE') {
+      this.chatService.listar_para_user(this.idUser).subscribe(data => {
+        this.lConversacion = data.data;
+      })
+
+    } else {
+      this.chatService.listar_para_admin(this.idUser).subscribe(data => {
+        this.lConversacion = data.data;
+      })
+    }
+
+  
+
+  }
 }

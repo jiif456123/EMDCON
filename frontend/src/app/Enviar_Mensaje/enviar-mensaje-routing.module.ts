@@ -1,13 +1,9 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { ConversacionesComponent } from './conversaciones/conversaciones.component';
 
 const routes: Routes = [
-  {
-    path: "",
-    children: [
-      
-    ],
-  },
+  {path: '', component: ConversacionesComponent, data: { title: 'Chat' }}
 ];
 
 @NgModule({
