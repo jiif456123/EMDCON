@@ -12,6 +12,24 @@ router.get('/', (req, res) => { //get
             (errorMessage) => http.err(req, res, code.status.Internal_Server_Error.code, errorMessage, errorMessage));
 });
 
+router.get('/admin', (req, res) => { //get
+
+    usuarioService.listarAdmin()
+        .then(
+            (data) => http.ok(req, res, code.status.Ok.code, data))
+        .catch(
+            (errorMessage) => http.err(req, res, code.status.Internal_Server_Error.code, errorMessage, errorMessage));
+});
+
+router.get('/residente', (req, res) => { //get
+
+    usuarioService.listarResidente()
+        .then(
+            (data) => http.ok(req, res, code.status.Ok.code, data))
+        .catch(
+            (errorMessage) => http.err(req, res, code.status.Internal_Server_Error.code, errorMessage, errorMessage));
+});
+
 router.post('/', (req, res) => { //post
 
     let usuario = req.body;

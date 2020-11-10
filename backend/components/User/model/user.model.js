@@ -11,7 +11,10 @@ var user = new Schema({
     password: { type: String },
     celular: { type: String },
     foto: { type: String },
-    dni: { type: String }
+    dni: { type: String },
+    departamento: {
+        type: Schema.Types.ObjectId,
+        ref: 'Departamento' }
 }, {
     versionKey: false
 });
