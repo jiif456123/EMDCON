@@ -4,16 +4,14 @@ var Schema = mongoose.Schema;
 var reserva = new Schema({
 
     nombre: { type: String },
-    areacomun: { type: String },
-    evento: { type: Date },
-    persona: { type: Date },
+    areacomun: { type: Schema.Types.ObjectId, ref: 'Areacomun' },
+    evento: { type: String },
+    persona: { type: Schema.Types.ObjectId, ref: 'User' },
     fechaInicio: { type: Date },
     fechaFin: { type: Date },
     horaInicio: { type: Date },
     horaFin: { type: Date },
     estado: { type: String },
-    urlfoto: { type: String },
-
 }, {
     versionKey: false
 });
