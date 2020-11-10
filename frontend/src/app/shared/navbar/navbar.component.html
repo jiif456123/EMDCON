@@ -7,128 +7,68 @@
                     <i class="icon-menu menu-icon"></i>
                 </a>
             </li>
-            <li class="nav-item">
-                <form class="search-bar">
-                    <input type="text" class="form-control" placeholder="Enter keywords">
-                    <a href="javascript:;"><i class="icon-magnifier"></i></a>
-                </form>
-            </li>
         </ul>
         <ul class="navbar-nav align-items-center right-nav-link">
 
             <li class="nav-item dropdown-lg" ngbDropdown>
                 <a href="javascript:;" class="nav-link dropdown-toggle-nocaret" id="dropdownBasic1" ngbDropdownToggle>
-                    <i class="fa fa-envelope-open-o"></i><span class="badge badge-danger badge-up">12</span></a>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic1" class="dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
-                    <ul class="list-group list-group-flush">
+                    <i class="fa fa-envelope-open-o"></i><span class="badge badge-danger badge-up"></span></a>
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic1"
+                    class="dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
+                    <ul *ngIf="rol!='RESIDENTE'" class="list-group list-group-flush">
                         <li class="list-group-item disabled d-flex justify-content-between align-items-center">
-                            You have 12 new messages
-                            <span class="badge badge-danger">12</span>
-                        </li>
-                        <li class="list-group-item">
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text" id="inputGroup-sizing-sm"><i class="fa fa-search"></i></span>
-                                </div>
-                                <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm">
-                            </div>
                         </li>
                         <div class="dropdown-container" [perfectScrollbar]>
-                            <li class="list-group-item">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-2.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">Sara Jen</h6>
-                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>
-                                            <small>Yesterday, 8:30 AM</small>
-                                        </div>
+                            <li class="list-group-item" *ngFor="let vconver of lConversacion">
+                                <div class="media">
+                                    <div class="avatar">
+                                        <img class="align-self-start mr-3"
+                                            src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
+                                            alt="user" width="65" class="rounded-circle">
                                     </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-3.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">Dannish Josh</h6>
-                                            <p class="msg-info">Lorem ipsum dolor sit amet...</p>
-                                            <small>5/11/2018, 2:50 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item active">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-1.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title text-white">Katrina Mccoy</h6>
-                                            <p class="msg-info text-white">Lorem ipsum dolor sit amet...</p>
-                                            <small class="text-white">Today, 4:10 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-6.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">Luci Laura</h6>
-                                            <p class="msg-info">Lorem ipsum dolor sit amet.</p>
-                                            <small>1/11/2020, 3:50 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
+                                    <div style="margin-left: 10px;" class="media-body">
+                                        <h6 class="mt-0 msg-title">{{vconver.user.nombre}}</h6>
+                                        <p class="msg-info">
+                                            {{vconver.lastMessage}}</p>
+                                        <small>{{vconver.timeStamp| date:'shortDate'}}</small>
 
-                            <li class="list-group-item">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-9.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">Harry Wilson</h6>
-                                            <p class="msg-info">Lorem ipsum dolor sit amet.</p>
-                                            <small>12/11/2019, 2:49 PM</small>
-                                        </div>
                                     </div>
-                                </a>
+                                </div>
                             </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-10.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">Ema Delvin</h6>
-                                            <p class="msg-info">Lorem ipsum dolor sit amet.</p>
-                                            <small>07/10/2018, 2:47 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-                            <li class="list-group-item">
-                                <a href="javaScript:;">
-                                    <div class="media">
-                                        <div class="avatar"><img class="align-self-start mr-3" src="assets\images\avatars\avatar-21.png" alt="user avatar"></div>
-                                        <div class="media-body">
-                                            <h6 class="mt-0 msg-title">Garib Dass</h6>
-                                            <p class="msg-info">Lorem ipsum dolor sit amet.</p>
-                                            <small>04/03/2017, 9:50 PM</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </li>
-
                         </div>
-                        <li class="list-group-item text-center"><a href="javaScript:;">See All Messages</a></li>
+                        <li class="list-group-item text-center"><a routerLink="/enviarmensaje">Ver todas</a></li>
                     </ul>
+
+                    <ul *ngIf="rol=='RESIDENTE'" class="list-group list-group-flush">
+                        <li class="list-group-item disabled d-flex justify-content-between align-items-center">
+                        </li>
+                        <div class="dropdown-container" [perfectScrollbar]>
+                            <li class="list-group-item" *ngFor="let vconver of lConversacion">
+                                <a>
+                                    <div class="media">
+                                        <div class="avatar"><img class="align-self-start mr-3"
+                                                src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
+                                                alt="user avatar" width="65" class="rounded-circle"></div>
+                                        <div class="media-body">
+                                            <h6 class="mt-0 msg-title">{{vconver.admin.nombre}}</h6>
+                                            <p class="msg-info">{{vconver.lastMessage}}</p>
+                                            <small>{{vconver.timeStamp| date:'shortDate'}}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </li>
+                        </div>
+                        <li class="list-group-item text-center"><a  routerLink="/enviarmensaje">Ver todas</a></li>
+                    </ul>
+
                 </div>
             </li>
             <li class="nav-item dropdown-lg" ngbDropdown placement="bottom-right">
-                <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect" id="dropdownBasic2" ngbDropdownToggle>
+                <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret waves-effect"
+                    id="dropdownBasic2" ngbDropdownToggle>
                     <i class="fa fa-bell-o"></i><span class="badge badge-info badge-up">14</span></a>
-                <div ngbDropdownMenu aria-labelledby="dropdownBasic2" class="dropdown-menu dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
+                <div ngbDropdownMenu aria-labelledby="dropdownBasic2"
+                    class="dropdown-menu dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item disabled d-flex justify-content-between align-items-center">
                             You have 14 Notifications
@@ -171,31 +111,28 @@
                     </ul>
                 </div>
             </li>
-            <li class="nav-item language" ngbDropdown placement="bottom-right">
-                <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" id="dropdownBasic3" ngbDropdownToggle><i class="flag-icon flag-icon-gb"></i></a>
-                <ul ngbDropdownMenu aria-labelledby="dropdownBasic3" class="dropdown-menu dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-gb mr-2"></i> English</li>
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-fr mr-2"></i> French</li>
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-cn mr-2"></i> Chinese</li>
-                    <li class="dropdown-item"> <i class="flag-icon flag-icon-de mr-2"></i> German</li>
-                </ul>
-            </li>
+
             <li class="nav-item border-left" ngbDropdown placement="bottom-right">
-                <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" id="dropdownBasic4" ngbDropdownToggle>
-                    <span class="user-profile"><img src="data:image/png;base64,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" class="img-circle" alt="user avatar"></span>
+                <a href="javascript:;" class="nav-link dropdown-toggle dropdown-toggle-nocaret" id="dropdownBasic4"
+                    ngbDropdownToggle>
+                    <span class="user-profile"><img
+                            src="data:image/png;base64,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"
+                            class="img-circle" alt="user avatar"></span>
                     <p class="ml-3 mb-0 float-right extra-small-font hidden-xs">
-                        Administrador <br> EMDCON
+                        {{usuario.nombre}} {{usuario.apellidoPaterno}} {{usuario.rol=='RESIDENTE'?' - ' + usuario.departamento.nombre:''}} <br> EMDCON
                     </p>
                 </a>
-                <ul ngbDropdownMenu aria-labelledby="dropdownBasic4" class="dropdown-menu dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
+                <ul ngbDropdownMenu aria-labelledby="dropdownBasic4"
+                    class="dropdown-menu dropdown-menu-right animate__animated animate__fadeInUp animate__faster">
                     <li class="dropdown-item user-details">
                         <a href="javaScript:;">
                             <div class="media">
-                                <div class="avatar"><img class="align-self-start mr-3" src="data:image/png;base64,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"
+                                <div class="avatar"><img class="align-self-start mr-3"
+                                        src="data:image/png;base64,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"
                                         alt="user avatar"></div>
                                 <div class="media-body">
-                                    <h6 class="mt-2 user-title">Administrador</h6>
-                                    <p class="user-subtitle">jdmv20.11@gmail.com</p>
+                                    <h6 class="mt-2 user-title">{{usuario.nombre}} {{usuario.apellidoPaterno}}</h6>
+                                    <p class="user-subtitle">{{usuario.username}}</p>
                                 </div>
                             </div>
                         </a>
@@ -207,7 +144,7 @@
                     <li class="dropdown-divider"></li>
                     <li class="dropdown-item"><i class="icon-settings mr-2"></i> Setting</li>
                     <li class="dropdown-divider"></li>
-                    <li class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
+                    <li (click)="cerrarSesion()" class="dropdown-item"><i class="icon-power mr-2"></i> Logout</li>
                 </ul>
             </li>
         </ul>

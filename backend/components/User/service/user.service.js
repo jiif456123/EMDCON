@@ -1,5 +1,5 @@
 var User = require('../model/user.model');
-
+var bcrypt = require('bcrypt');
 
 var listarUsuarios = () => {
 
@@ -8,31 +8,58 @@ var listarUsuarios = () => {
     };
 
     return new Promise((resolve, reject) => {
-        User.find(query).exec((err, listaUsuarios) => {
+        User.find(query).populate('departamento').exec((err, listaUsuarios) => {
             if (err) reject(err);
             resolve(listaUsuarios);
         });
     });
 };
 
+var listarResidente = () => {
+
+    let query = {
+        rol : 'RESIDENTE'
+    }
+    return new Promise((resolve, reject) => {
+        User.find(query).exec((err, listaUsuarios) => {
+            if (err) reject(err);
+            resolve(listaUsuarios);
+        });
+    });
+}
+
+var listarAdmin = () => {
+
+    let query = {
+        rol :{$ne:'RESIDENTE'}
+    }
+    return new Promise((resolve, reject) => {
+        User.find(query).exec((err, listaUsuarios) => {
+            if (err) reject(err);
+            resolve(listaUsuarios);
+        });
+    });
+}
+
 var registarUsuario = (usuario) => {
 
     let objUsuario = new User({
-        role: usuario.role,
+        rol: usuario.rol,
         nombre: usuario.nombre,
         apellidoPaterno: usuario.apellidoPaterno,
         apellidoMaterno: usuario.apellidoMaterno,
         username: usuario.username,
-        password: usuario.password,
-        nombre: usuario.nombre,
+        password: bcrypt.hashSync(usuario.password, 10),
         celular: usuario.celular,
         foto: usuario.foto,
         dni: usuario.dni,
+        departamento: usuario.departamento
     });
 
     return new Promise((resolve, reject) => {
-        objUsuario.save((err, usuario) => {
+        objUsuario.save(objUsuario, (err, usuario) => {
             if (err) reject(err);
+            console.log(usuario);
             resolve(usuario);
         });
     });
@@ -57,5 +84,7 @@ var modificarUsuarios = (id, usuario) => {
 module.exports = {
     listar: listarUsuarios,
     registrar: registarUsuario,
-    modificar: modificarUsuarios
+    modificar: modificarUsuarios,
+    listarResidente: listarResidente,
+    listarAdmin: listarAdmin
 };
