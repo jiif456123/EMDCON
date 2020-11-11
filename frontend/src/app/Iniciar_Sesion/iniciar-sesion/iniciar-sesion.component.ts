@@ -45,7 +45,6 @@ export class IniciarSesionComponent implements OnInit {
     departamento: null
     }
     this.usuarioService.iniciarSesion(user).subscribe(data=>{
-      console.log(data);
       this.router.navigate(['/gestionarareacomun'])
     }, (err => {
       if (err.status === 400) {
