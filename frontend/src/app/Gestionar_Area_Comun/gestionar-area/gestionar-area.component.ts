@@ -34,20 +34,20 @@ export class GestionarAreaComponent implements OnInit {
     this.sreserva = res;
   }
 
-  fnActualizar(res: Reserva, opcion: number ){
+  fnActualizar(res: Reserva, opcion: number) {
 
-    let query ={
+    let query = {
       reserva: res._id,
-      estado: opcion    
+      estado: opcion
     }
     swal({
-      title: 'Estas seguro de Actualizar',
-      text: 'Esta actualizacion realizara cambios en la gestión',
+      title: 'Estas seguro de ' + (opcion == 1 ? 'Aceptar' : 'Rechazar') + ' esta solicitud',
+      text: 'Esta actualizacion realizara cambios en la gestión de la solicitud',
       type: 'question',
       showCancelButton: true,
       confirmButtonText: 'Si',
-    }).then(result=>{
-      if(result.value){
+    }).then(result => {
+      if (result.value) {
         //todo el codigo
         this.reservaService.actualizar(query).subscribe(data => {
           this.reservaService.listar().subscribe(data => {
@@ -56,7 +56,7 @@ export class GestionarAreaComponent implements OnInit {
           })
         })
       }
-      
+
     })
 
   }

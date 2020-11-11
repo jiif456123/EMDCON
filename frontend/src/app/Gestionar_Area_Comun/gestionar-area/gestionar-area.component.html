@@ -1,10 +1,10 @@
 <div class="row" style="margin-bottom: 15px">
     <!--Button zona-->
-    <input [(ngModel)]="filtro" type="text" class="form-control" placeholder="Buscar">
+    <input [(ngModel)]="filtro" type="text" class="form-control" placeholder="Buscar" />
 </div>
 <div class="row">
     <!--Tabla-->
-    <table style="width:100%" class="table table-striped">
+    <table style="width: 100%" class="table table-striped">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
@@ -17,24 +17,27 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let res of lReserva | filterBy:filtro">
-                <th scope="row">{{res.persona.nombre}} {{res.persona.apellidoPaterno}}</th>
-                <td>{{res.areacomun.nombre}}</td>
-                <td>{{res.nombre}}</td>
-                <td>{{res.fechaInicio | date:'medium'}}</td>
-                <td>{{res.fechaFin | date:'medium'}}</td>
-                <td>{{res.estado=="1"?'Aprobado' : 'Rechazado'}}
+            <tr *ngFor="let res of lReserva | filter: filtro">
+                <th scope="row">
+                    {{ res.persona.nombre }} {{ res.persona.apellidoPaterno }}
+                </th>
+                <td>{{ res.areacomun.nombre }}</td>
+                <td>{{ res.nombre }}</td>
+                <td>{{ res.fechaInicio | date: "medium" }}</td>
+                <td>{{ res.fechaFin | date: "medium" }}</td>
+                <td>
+                    {{ res.estado == "2" ? "Pendiente" : res.estado == "1" ? "Aprobado" : "Rechazado" }}
                 </td>
                 <td>
-                    <button style="margin:3px;" (click)="fnAbrirModal(content); fnSeleccionar(res)" class="btn btn-dark">
-                        <i class="fa fa-eye" aria-hidden="true"></i>
-                    </button>
-                    <button style="margin:3px;" (click)="fnActualizar(res, 1)" class="btn btn-dark">
-                        <i class="fa fa-check" aria-hidden="true"></i>
-                    </button>
-                    <button style="margin:3px;" (click)="fnActualizar(res, 0)" class="btn btn-dark">
-                        <i class="fa fa-trash-o" aria-hidden="true"></i>
-                    </button>
+                    <button style="margin: 3px" (click)="fnAbrirModal(content); fnSeleccionar(res)" class="btn btn-dark">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+          </button>
+                    <button style="margin: 3px" (click)="fnActualizar(res, 1)" [disabled]="res.estado != 2" class="btn btn-dark">
+            <i class="fa fa-check" aria-hidden="true"></i>
+          </button>
+                    <button style="margin: 3px" (click)="fnActualizar(res, 0)" [disabled]="res.estado != 2" class="btn btn-dark">
+            <i class="fa fa-trash-o" aria-hidden="true"></i>
+          </button>
                 </td>
             </tr>
         </tbody>
@@ -43,24 +46,18 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-        <h4 class="modal-title" id="modal-basic-title">
-            Ver detalle
-        </h4>
+        <h4 class="modal-title" id="modal-basic-title">Ver detalle</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-
-            <span aria-hidden="true">
-                ×
-            </span>
-        </button>
+      <span aria-hidden="true"> × </span>
+    </button>
     </div>
     <div class="modal-body">
-        <p>Persona: {{sreserva?.persona.nombre}} {{sreserva?.persona.apellidoPaterno}}</p>
-        <p>Area comun: {{sreserva?.areacomun.nombre}}</p>
-        <p>Evento: {{sreserva?.nombre}}</p>
-        <p>Fecha inicio: {{sreserva?.fechaInicio | date:'medium'}}</p>
-        <p>Fecha fin: {{sreserva?.fechaFin | date:'medium'}}</p>
-
-
+        <p>
+            Persona: {{ sreserva?.persona.nombre }} {{ sreserva?.persona.apellidoPaterno }}
+        </p>
+        <p>Area comun: {{ sreserva?.areacomun.nombre }}</p>
+        <p>Evento: {{ sreserva?.nombre }}</p>
+        <p>Fecha inicio: {{ sreserva?.fechaInicio | date: "medium" }}</p>
+        <p>Fecha fin: {{ sreserva?.fechaFin | date: "medium" }}</p>
     </div>
-
 </ng-template>
