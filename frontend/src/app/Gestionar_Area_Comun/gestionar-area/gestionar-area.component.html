@@ -59,5 +59,8 @@
         <p>Evento: {{ sreserva?.nombre }}</p>
         <p>Fecha inicio: {{ sreserva?.fechaInicio | date: "dd/MM/yyyy" }}</p>
         <p>Fecha fin: {{ sreserva?.fechaFin | date: "dd/MM/yyyy" }}</p>
+        <p>Hora inicio: {{ sreserva?.horaInicio | date: "shortTime" }}</p>
+        <p>Hora fin: {{ sreserva?.horaFin | date: "shortTime" }}</p>
+        
     </div>
 </ng-template>
