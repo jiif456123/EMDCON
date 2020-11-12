@@ -48,7 +48,6 @@ import { GestionarPresupuestoModule } from './Gestionar_Presupuesto/gestionar-pr
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4'}),
     PerfectScrollbarModule,
     GestionarPresupuestoModule
-
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

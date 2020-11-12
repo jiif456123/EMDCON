@@ -5,6 +5,8 @@ const rutas = require('../router/network');
 const app = express();
 var db = require('../utils/connection');
 var mongo = require('../utils/database').database;
+var color = require('../utils/colors').colors;
+
 db(mongo.url, mongo.options)
     .then((data) => {
         console.log(color.sky_blue, `[DATABASE]=${data}`);
@@ -21,6 +23,6 @@ app.use(function(req, res, next) {
     next();
 });
 
-servidor(app);
 
-rutas(app);
+servidor(app)
+rutas(app)
