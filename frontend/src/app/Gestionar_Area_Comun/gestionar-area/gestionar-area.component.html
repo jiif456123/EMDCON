@@ -23,8 +23,8 @@
                 </th>
                 <td>{{ res.areacomun.nombre }}</td>
                 <td>{{ res.nombre }}</td>
-                <td>{{ res.fechaInicio | date: "DD/MM/yyyy" }}</td>
-                <td>{{ res.fechaFin | date: "DD/MM/yyyy" }}</td>
+                <td>{{ res.fechaInicio | date: "dd/MM/yyyy" }}</td>
+                <td>{{ res.fechaFin | date: "dd/MM/yyyy" }}</td>
                 <td>
                     {{ res.estado == "2" ? "Pendiente" : res.estado == "1" ? "Aprobado" : "Rechazado" }}
                 </td>
@@ -57,7 +57,7 @@
         </p>
         <p>Area comun: {{ sreserva?.areacomun.nombre }}</p>
         <p>Evento: {{ sreserva?.nombre }}</p>
-        <p>Fecha inicio: {{ sreserva?.fechaInicio | date: "DD/MM/yyyy" }}</p>
-        <p>Fecha fin: {{ sreserva?.fechaFin | date: "DD/MM/yyyy" }}</p>
+        <p>Fecha inicio: {{ sreserva?.fechaInicio | date: "dd/MM/yyyy" }}</p>
+        <p>Fecha fin: {{ sreserva?.fechaFin | date: "dd/MM/yyyy" }}</p>
     </div>
 </ng-template>
