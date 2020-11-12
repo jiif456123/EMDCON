@@ -23,53 +23,60 @@ export const Full_ROUTES: Routes = [
         path: 'visualizardocumentos',
         loadChildren: () => import('../../Visualizar_Documentos/visualizar-documentos.module').then(m => m.VisualizarDocumentosModule)
     },
-    {    
+    {
         path: 'gestionardocumentos',
         loadChildren: () => import('../../Gestionar_Documentos/gestionar-documentos.module').then(m => m.GestionarDocumentosModule)
     },
-    {    
+    {
         path: 'publicardocumentos',
         loadChildren: () => import('../../Publicar_Documentos/publicar-documentos.module').then(m => m.PublicarDocumentosModule)
     },
-    {    
+    {
         path: 'registrarpagosdeservicios',
         loadChildren: () => import('../../Registrar_Pagos_de_Servicios/registrar-pago-de-servicios.module').then(m => m.RegistrarPagodeServiciosModule)
     },
-    {    
+    {
         path: 'gestionarpagosdeservicios',
         loadChildren: () => import('../../Gestionar_Pagos_de_Servicios/gestionar-pagos-de-servicios.module').then(m => m.GestionarPagosdeServiciosModule)
     },
-    {    
+    {
         path: 'administrarvisita',
         loadChildren: () => import('../../Administrar_Visita/administrar-visita.module').then(m => m.AdministrarVisitaModule)
     },
-    {    
+    {
         path: 'consultarvisita',
         loadChildren: () => import('../../Consultar_Visita/consultar-visita.module').then(m => m.ConsultarVisitaModule)
     },
-    {    
+    {
         path: 'generaralertas',
         loadChildren: () => import('../../Generar_Alertas/generar-alertas.module').then(m => m.GenerarAlertasModule)
     },
-    {    
+    {
         path: 'gestionarreporteeconomico',
         loadChildren: () => import('../../Gestionar_Reporte_Economico/gestionar-reporte-economico.module').then(m => m.GestionarReporteEconomicoModule)
     },
-    {    
+    {
         path: 'consultarresidentemoroso',
         loadChildren: () => import('../../Consultar_Residente_Moroso/consultar-residente-moroso.module').then(m => m.ConsultarResidenteMorosoModule)
     },
-    {    
+    {
         path: 'enviarmensaje',
         loadChildren: () => import('../../Enviar_Mensaje/enviar-mensaje.module').then(m => m.EnviarMensajeModule)
     },
-    {    
+    {
         path: 'iniciarsesion',
         loadChildren: () => import('../../Iniciar_Sesion/iniciar-sesion.module').then(m => m.IniciarSesionModule)
     },
-    {    
+    {
         path: 'cambiarcontraseña',
         loadChildren: () => import('../../Cambiar_Contraseña/cambiar-contraseña.module').then(m => m.CambiarContraseñaModule)
     },
-
+    {
+        path: 'presupuesto',
+        loadChildren: () => import('../../Gestionar_Presupuesto/gestionar-presupuesto.module').then(m => m.GestionarPresupuestoModule)
+    },
+    /* {
+      path: 'nuevopresupuesto/:id',
+      loadChildren: () => import('../../Gestionar_Presupuesto/RegistrarPresupuesto/registrar-presupuesto.module').then(m => m.RegistrarPresupuestoModule)
+  }, */
 ];
