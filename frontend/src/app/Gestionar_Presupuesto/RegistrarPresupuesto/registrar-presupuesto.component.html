@@ -1,0 +1,95 @@
+<div class="col-lg-5 col-md-5 col-xs-5">
+    <label>Registrar Asunto {{presupuestos.length}}</label>
+    <div class="card border">
+        <div class="card-body">
+            <div class="card-body">
+                <form [formGroup]="formPresupuesto">
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+                            <label for="asunto">Asunto</label>
+                            <input type="text" min="0" id="asunto" class="form-control" placeholder="Asunto" formControlName="asunto">
+                            <div class="pt-1 text-danger" *ngIf="invalid('asunto') || asuntoAux">
+                                <span class="form-control-feedback">
+                                <i class="mdi mdi-close-circle"></i> Este campo es <strong>requerido.</strong>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+                            <label for="mes">Mes</label>
+                            <input type="text" id="mes" class="form-control" placeholder="Mes" formControlName="mes">
+                            <div class="pt-1 text-danger" *ngIf="invalid('mes') || mesAux">
+                                <span class="form-control-feedback">
+                  <i class="mdi mdi-close-circle"></i> Este campo es <strong>requerido.</strong>
+                </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+                            <label for="fechaPago">Fecha Pago</label>
+                            <input type="date" id="fechaPago" class="form-control" placeholder="Fecha de Pago" formControlName="fechaPago" value="2020-11-11" min="2020-01-01" max="2021-12-31">
+                            <div class="pt-1 text-danger" *ngIf="invalid('fechaPago') || fechaPagoAux">
+                                <span class="form-control-feedback">
+                              <i class="mdi mdi-close-circle"></i> Este campo es <strong>requerido.</strong>
+                          </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+                            <label for="monto">Monto</label>
+                            <input type="number" min="0" id="monto" class="form-control" placeholder="Monto" formControlName="monto">
+                            <div class="pt-1 text-danger" *ngIf="invalid('monto') || montoAux">
+                                <span class="form-control-feedback">
+                                <i class="mdi mdi-close-circle"></i> Este campo es <strong>requerido.</strong>
+                            </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+                            <label for="estado">Estado</label>
+                            <input type="number" min="0" id="estado" class="form-control" placeholder="Estado" formControlName="estado">
+                            <div class="pt-1 text-danger" *ngIf="invalid('estado') || estadoAux">
+                                <span class="form-control-feedback">
+                              <i class="mdi mdi-close-circle"></i> Este campo es <strong>requerido.</strong>
+                          </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-lg-12 col-md-12 col-xs-12">
+                            <label for="tipoAsunto">Tipo Asunto</label>
+                            <input type="number" min="0" id="tipoAsunto" class="form-control" placeholder="Tipo Asunto" formControlName="tipoAsunto">
+                            <div class="pt-1 text-danger" *ngIf="invalid('tipoAsunto') || tipoAsuntoAux">
+                                <span class="form-control-feedback">
+                            <i class="mdi mdi-close-circle"></i> Este campo es <strong>requerido.</strong>
+                        </span>
+                            </div>
+                        </div>
+                    </div>
+                    <td class="text-center">
+                        <ng-container *ngIf="!editar; else editarPresupuesto">
+                            <button [disabled]="formPresupuesto.invalid" type="submit" class="btn btn-success" (click)="operar()">
+                <i class="mdi mdi-pencil mdi-18px">Registrar</i>
+              </button>
+                        </ng-container>
+                    </td>
+                    <ng-template #editarPresupuesto>
+                        <td class="text-center">
+                            <button [disabled]="formPresupuesto.invalid" type="submit" class="btn btn-warning" (click)="operar()">
+                <i class="mdi mdi-update mdi-18px">Editar</i>
+              </button>
+                        </td>
+                    </ng-template>
+                    <td class="text-center">
+                        <button type="button" role="button" class="btn btn-danger ml-2" routerLink="/presupuesto">
+              Regresar<i class="mdi mdi-arrow-left-bold mdi-18px"></i> </button>
+                    </td>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
