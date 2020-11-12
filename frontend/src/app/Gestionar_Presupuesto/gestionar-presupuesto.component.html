@@ -1,11 +1,31 @@
 <div class="form-group mb-5">
     <label>Gestionar Presupuestos {{presupuestos.length}}</label>
-    <button type="button" class="btn btn-outline-primary" routerLink="nuevo" style="margin-bottom: 10px; float: right;">
-    <i class="mdi mdi-pencil mdi-18px">Agregar Asunto</i>
-  </button>
-    <div>
-        <input type="text" class="form-control" name="mes" [(ngModel)]="presupuesto.mes" placeholder="Buscar Mes ...." #mes>
+
+    <div class="card">
+        <div class="card-header text-uppercase" name="mes" [(ngModel)]="presupuesto.mes">Seleccionar Mes</div>
+        <div class="card-body">
+            <div>
+                <input type="text" id="mes" class="form-control" name="mes" [(ngModel)]="presupuesto.mes" placeholder="Buscar Mes ...." #mes>
+            </div>
+            <form>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Enero')" (click)="calculardatosE()" (click)="calculardatosTotalEgresos()" (click)="calculardatosTotalIngresos()">ENERO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Febrero')" (click)="calculardatosF()">FEBRERO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Marzo')">MARZO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Abril')">ABRIL</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Mayo')">MAYO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Junio')">JUNIO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Julio')">JULIO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Agosto')">AGOSTO</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Septiembre')">SEPTIEMBRE</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Octubre')">OCTUBRE</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Noviembre')">NOVIEMBRE</button>
+                <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Diciembre')">DICIEMBRE</button>
+            </form>
+        </div>
     </div>
+    <button type="button" class="btn btn-outline-primary" routerLink="nuevo" style="margin-bottom: 10px; float: right;">
+      <i class="mdi mdi-pencil mdi-18px">Agregar Asunto</i>
+    </button>
     <div>
         <!--      <table class="table table-striped table-hover border border">
             <div class="table-responsive"> -->
@@ -75,21 +95,53 @@
                 </tr>
                 <tr>
                     <tr>
-                        <button class="btn btn-success btn-sm btn-block" (click)="Summa()">Cargar datos</button>
                     </tr>
                     <tr>
-                        <td>Total:</td>
+                        <td>Total de Ingresos:</td>
                         <td>
-                            S/ {{ Total | currency:' '}}
+                            S/ {{ Ingresos | currency:' '}}
                         </td>
                     </tr>
                     <tr>
-                        <button class="btn btn-success btn-sm btn-block" (click)="calculardatos()">Probar</button>
+                        <td>Total de Egresos:</td>
+                        <td>
+                            S/ {{ Egresos | currency:' '}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Presupuesto Total:</td>
+                        <td>
+                            S/ {{ Ingresos+Egresos | currency:' '}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pago de Mantenimiento:</td>
+                        <td>
+                            S/ {{ countF | currency:' '}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pago de Servicio de Luz:</td>
+                        <td>
+                            S/ {{ countF | currency:' '}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Pago de Servicio de A:</td>
+                        <td>
+                            S/ {{ countF | currency:' '}}
+                        </td>
                     </tr>
                     <tr>
                         <td>Total:</td>
                         <td>
-                            S/ {{ countAF | currency:' '}}
+                            S/ {{ countF | currency:' '}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Total:</td>
+                        <td>
+                            S/ {{ countF | currency:' '}}
                         </td>
                     </tr>
                     <tr>

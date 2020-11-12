@@ -25,6 +25,7 @@ const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 import * as $ from 'jquery';
 import { FormsModule } from '@angular/forms';
 import { GestionarPresupuestoModule } from './Gestionar_Presupuesto/gestionar-presupuesto.module';
+import { GestionarReporteEconomicoModule } from './Gestionar_Reporte_Economico/gestionar-reporte-economico.module';
 
 
 
@@ -47,7 +48,8 @@ import { GestionarPresupuestoModule } from './Gestionar_Presupuesto/gestionar-pr
     UiSwitchModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4'}),
     PerfectScrollbarModule,
-    GestionarPresupuestoModule
+    GestionarPresupuestoModule,
+    GestionarReporteEconomicoModule,
 
   ],
   providers: [
