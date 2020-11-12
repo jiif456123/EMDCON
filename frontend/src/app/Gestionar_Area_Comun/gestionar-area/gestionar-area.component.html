@@ -4,7 +4,7 @@
 </div>
 <div class="row">
     <!--Tabla-->
-    <table style="width: 100%" class="table table-striped">
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">Nombre</th>
@@ -23,8 +23,8 @@
                 </th>
                 <td>{{ res.areacomun.nombre }}</td>
                 <td>{{ res.nombre }}</td>
-                <td>{{ res.fechaInicio | date: "medium" }}</td>
-                <td>{{ res.fechaFin | date: "medium" }}</td>
+                <td>{{ res.fechaInicio | date: "DD/MM/yyyy" }}</td>
+                <td>{{ res.fechaFin | date: "DD/MM/yyyy" }}</td>
                 <td>
                     {{ res.estado == "2" ? "Pendiente" : res.estado == "1" ? "Aprobado" : "Rechazado" }}
                 </td>
@@ -57,7 +57,7 @@
         </p>
         <p>Area comun: {{ sreserva?.areacomun.nombre }}</p>
         <p>Evento: {{ sreserva?.nombre }}</p>
-        <p>Fecha inicio: {{ sreserva?.fechaInicio | date: "medium" }}</p>
-        <p>Fecha fin: {{ sreserva?.fechaFin | date: "medium" }}</p>
+        <p>Fecha inicio: {{ sreserva?.fechaInicio | date: "DD/MM/yyyy" }}</p>
+        <p>Fecha fin: {{ sreserva?.fechaFin | date: "DD/MM/yyyy" }}</p>
     </div>
 </ng-template>
