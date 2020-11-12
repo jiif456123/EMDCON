@@ -11,7 +11,7 @@ var message = new Schema({
         type: Schema.Types.ObjectId,
         ref: 'Chat'
     },
-    timeStamp: { type: String }
+    timeStamp: { type: Date }
 }, {
     versionKey: false
 });

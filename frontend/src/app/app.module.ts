@@ -48,9 +48,8 @@ import { GestionarReporteEconomicoModule } from './Gestionar_Reporte_Economico/g
     UiSwitchModule,
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4'}),
     PerfectScrollbarModule,
-    GestionarPresupuestoModule,
     GestionarReporteEconomicoModule,
-
+    GestionarPresupuestoModule
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
