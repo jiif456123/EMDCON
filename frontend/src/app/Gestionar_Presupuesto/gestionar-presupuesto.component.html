@@ -117,37 +117,31 @@
                     <tr>
                         <td>Pago de Mantenimiento:</td>
                         <td>
-                            S/ {{ countF | currency:' '}}
+                            S/ {{ Mantenimiento | currency:' '}}
                         </td>
                     </tr>
                     <tr>
                         <td>Pago de Servicio de Luz:</td>
                         <td>
-                            S/ {{ countF | currency:' '}}
+                            S/ {{ Luz | currency:' '}}
                         </td>
                     </tr>
                     <tr>
-                        <td>Pago de Servicio de A:</td>
+                        <td>Pago de Servicio de Agua:</td>
                         <td>
-                            S/ {{ countF | currency:' '}}
+                            S/ {{ Agua | currency:' '}}
                         </td>
                     </tr>
                     <tr>
-                        <td>Total:</td>
+                        <td>Pago de Mantenimiento Ascensor:</td>
                         <td>
-                            S/ {{ countF | currency:' '}}
+                            S/ {{ Otros | currency:' '}}
                         </td>
                     </tr>
                     <tr>
-                        <td>Total:</td>
+                        <td>Pago Total de Departamento:</td>
                         <td>
-                            S/ {{ countF | currency:' '}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Total:</td>
-                        <td>
-                            S/ {{ countF | currency:' '}}
+                            S/ {{ (Mantenimiento+Agua+Luz+Otros)/51 | currency:' '}}
                         </td>
                     </tr>
             </tbody>
