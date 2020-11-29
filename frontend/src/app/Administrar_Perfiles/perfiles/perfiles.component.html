@@ -1,0 +1,30 @@
+<div class="row" style="margin-bottom: 15px">
+    <!--Button zona-->
+</div>
+<div class="row">
+    <!--Tabla-->
+    <div class="table-responsive">
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Rol</th>
+                    <th scope="col">Celular</th>
+                    <th scope="col">Correo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let res of usuarios">
+                    <th scope="row">
+                        {{ res.nombre }} {{ res.apellidoPaterno }}
+                    </th>
+                    <td>{{ res.rol }}</td>
+                    <td>{{ res.celular }}</td>
+                    <td>{{ res.username }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

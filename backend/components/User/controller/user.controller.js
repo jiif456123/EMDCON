@@ -48,8 +48,6 @@ router.put('/:id', (req, res) => {
     let id = req.params.id;
     let usuario = req.body;
 
-    console.log(id);
-
     usuarioService.modificar(id, usuario).then((data) => {
         http.ok(req, res, code.status.Ok.code, data);
     }).catch((error) => {

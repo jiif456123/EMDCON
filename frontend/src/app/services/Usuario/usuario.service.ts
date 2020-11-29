@@ -73,5 +73,9 @@ export class UsuarioService {
   listarResidente(){
     return this.httpClient.get<any>(this.url_API + '/residente');
   }
+
+  listar(){
+    return this.httpClient.get<any>(this.url_API);
+  }
   
 }

@@ -20,6 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked, OnCha
   lmensajes: Message[] = [];
   ultimoMensaje: Message;
   idUser;
+  rol:string;
   constructor(
     private socketService: SocketService,
     private messageService: MessageService,
@@ -76,6 +77,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked, OnCha
 
   ngOnInit(): void {
     this.lmensajes = [];
+    this.rol = JSON.parse(localStorage.getItem('rol'));
 
     this.idUser = localStorage.getItem('id');
   }
