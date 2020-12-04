@@ -58,4 +58,8 @@ export const ROUTES: RouteInfo[] = [
         path: '/consultarvisita', rol:'PORTERIA', title: 'Consultar Visita', icon: 'zmdi zmdi-home text-primary', class: '', badge: '', badgeClass: 'badge badge-success badge-pill float-right mr-1 mt-1', isExternalLink: false, 
         submenu: []
     },
+    {
+      path: '/presupuesto', rol:'ADMIN', title: 'Gestionar Presupuesto', icon: 'zmdi zmdi-home text-primary', class: '', badge: '', badgeClass: 'badge badge-success badge-pill float-right mr-1 mt-1', isExternalLink: false,
+      submenu: []
+    },
 ];

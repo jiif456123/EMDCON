@@ -84,5 +84,13 @@ export const Full_ROUTES: Routes = [
         path: 'cambiarcontraseña',
         loadChildren: () => import('../../Cambiar_Contraseña/cambiar-contraseña.module').then(m => m.CambiarContraseñaModule)
     },
-
+    {
+        canActivate: [LoginGuard],
+        path: 'presupuesto',
+        loadChildren: () => import('../../Gestionar_Presupuesto/gestionar-presupuesto.module').then(m => m.GestionarPresupuestoModule)
+    },
+    /* {
+      path: 'nuevopresupuesto/:id',
+      loadChildren: () => import('../../Gestionar_Presupuesto/RegistrarPresupuesto/registrar-presupuesto.module').then(m => m.RegistrarPresupuestoModule)
+  }, */
 ];
