@@ -2,7 +2,9 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var departamento = new Schema({
-    nombre: { type: String }
+    nombre: { type: String },
+    numDepartamento: { type: Number },
+    cochera: { type: Number },
 }, {
     versionKey: false
 });

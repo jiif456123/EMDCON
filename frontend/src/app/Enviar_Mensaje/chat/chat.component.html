@@ -1,25 +1,32 @@
-<div  #scrollMe style="height: xyz;" class="px-4 py-5 chat-box bg-white">
-    <!-- Sender Message-->
-    <div *ngFor="let mensaje of lmensajes" [className]="mensaje.sendBy==idUser?'media w-50 ml-auto mb-3':'media w-50 mb-3'" >
-        <img *ngIf="mensaje.sendBy!=idUser" src="https://res.cloudinary.com/mhmd/image/upload/v1564960395/avatar_usae7z.svg"
-            alt="user" width="50" class="rounded-circle">
-        <div class="media-body ml-3">
-            <div class="bg-light rounded py-2 px-3 mb-2">
-                <p class="text-small mb-0 text-muted">{{mensaje.name}}</p>
-            </div>
-            <p class="small text-muted">{{mensaje.timeStamp | date:'medium'}}</p>
+<div class="settings-tray">
+    <div class="friend-drawer no-gutters friend-drawer--grey">
+        <img class="profile-image"
+            src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
+        <div class="text d-flex alig-items-center">
+            <h5 class="d-flex align-items-center" *ngIf="rol=='RESIDENTE'">
+                {{chatSeleccionado.admin.nombre}}
+            </h5>
+            <h5 class="d-flex align-items-center" *ngIf="rol!='RESIDENTE'">
+                {{chatSeleccionado.user.nombre}} {{chatSeleccionado.user.apellidoPaterno}}
+            </h5>
         </div>
     </div>
-
 </div>
 
-<!-- Typing area -->
-<div class="bg-light">
-    <div class="input-group">
-        <input type="text" (keydown.enter)="sendMessage()" [(ngModel)]="message" placeholder="Type a message" aria-describedby="button-addon2"
-            class="form-control rounded-0 border-0 py-4 bg-light">
-        <div class="input-group-append">
-            <button id="button-addon2" (click)="sendMessage()" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>
+<div #scrollMe style="height: xyz;" class="chat-panel">
+    <div *ngFor="let mensaje of lmensajes"  class="row no-gutters">
+        <div [className]="mensaje.sendBy==idUser?'col-md-3 offset-md-9':'col-md-3'" >
+            <div [className]="mensaje.sendBy==idUser?'chat-bubble chat-bubble--right':'chat-bubble chat-bubble--left'">
+                {{mensaje.name}}
+            </div>
         </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12">
+        <div class="chat-box-tray">
+            <input type="text" (keydown.enter)="sendMessage()" [(ngModel)]="message" placeholder="Escriba su mensaje...">
+            <button id="button-addon2" (click)="sendMessage()" type="submit" class="btn btn-link"> <i class="fa fa-paper-plane"></i></button>        </div>
     </div>
 </div>
