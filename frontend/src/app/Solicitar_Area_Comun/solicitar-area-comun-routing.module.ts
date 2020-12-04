@@ -1,12 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { SolicitarAreaComponent } from './solicitar-area/solicitar-area.component';
 
 const routes: Routes = [
   {
-    path: "",
-    children: [
-      
-    ],
+    path: "",component:SolicitarAreaComponent, data:{title: 'Solicitar area comun'}
   },
 ];
 
