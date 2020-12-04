@@ -8,7 +8,8 @@ const messageController = require('../components/message/controller/message.cont
 const depController = require('../components/departamento/controller/departamento.controller');
 const reservaController = require('../components/Reserva/controller/reserva.controller');
 const areaComunService = require('../components/Area Comun/controller/areacomun.controller');
-
+const resiController = require('../components/Resi/controller/resi.controller')
+const visitaController = require('../components/Visita/controller/visita.controller')
 const rutas = function(app) {
     app.use('/user', userController)
     app.use('/presupuesto', presupuestoController)
@@ -17,9 +18,11 @@ const rutas = function(app) {
     app.use('/login', loginController)
     app.use('/chat', chatController)
     app.use('/message', messageController)
-    app.use('/departamento', depController) 
+    app.use('/departamento', depController)
     app.use('/reserva', reservaController)
     app.use('/areacomun', areaComunService)
+    app.use('/resi', resiController)
+    app.use('/visita', visitaController)
 }
 
 module.exports = rutas;

@@ -1,12 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { ResiComponent } from './consultar-residente-moroso.component';
 
 const routes: Routes = [
   {
-    path: "",
-    children: [
-      
-    ],
+    path: '',
+    component: ResiComponent,
+    data: {
+      title: 'Residente Moroso'
+    }
   },
 ];
 

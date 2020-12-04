@@ -18,6 +18,10 @@ import { Ingreso } from '../models/ingreso.model';
 export class GestionarPresupuestoComponent implements OnInit {
   precioIngresos = 0;
   preciodeFila = 0;
+  Mantenimiento = 0;
+  Luz = 0;
+  Agua = 0;
+  Otros = 0;
   Egresos: number;
   Ingresos: number;
   mes1: string;
@@ -86,7 +90,7 @@ export class GestionarPresupuestoComponent implements OnInit {
         console.log(x.mes)
         this.countF = this.countF + x.monto
       }
-      if (x.asunto === 5) {
+      if (x.asunto === 0) {
         console.log(x.tipoAsunto)
         this.countAF = this.countAF + x.monto
       }
@@ -146,4 +150,69 @@ export class GestionarPresupuestoComponent implements OnInit {
   escribir(opcion: string){
     this.presupuesto.mes=(opcion);
     }
+
+    calculardatosTotalMantenimiento1(){
+      this.Mantenimiento=0;
+      this.countF=0;
+      this.presupuestos.filter(x => {
+        if (x.mes == 'Enero') {
+          console.log(x.mes)
+          this.countF = this.countF + x.monto
+        }
+        if (x.tipoAsunto === 0) {
+          console.log(x.tipoAsunto)
+          this.Mantenimiento = this.Mantenimiento + x.monto
+        }
+      })
+      console.log('suma total de egresos ', this.Mantenimiento)
+      console.log('suma de Pago de administrador', this.countF)
+     }
+     calculardatosTotalAgua(){
+      this.Agua=0;
+      this.countF=0;
+      this.presupuestos.filter(x => {
+        if (x.mes == 'Enero') {
+          console.log(x.mes)
+          this.countF = this.countF + x.monto
+        }
+        if (x.tipoAsunto === 1) {
+          console.log(x.tipoAsunto)
+          this.Agua = this.Agua + x.monto
+        }
+      })
+      console.log('suma total de egresos ', this.Agua)
+      console.log('suma de Pago de administrador', this.countF)
+     }
+     calculardatosTotalLuz(){
+      this.Luz=0;
+      this.countF=0;
+      this.presupuestos.filter(x => {
+        if (x.mes == 'Enero') {
+          console.log(x.mes)
+          this.countF = this.countF + x.monto
+        }
+        if (x.tipoAsunto === 2) {
+          console.log(x.tipoAsunto)
+          this.Luz = this.Luz + x.monto
+        }
+      })
+      console.log('suma total de egresos ', this.Luz)
+      console.log('suma de Pago de administrador', this.countF)
+     }
+     calculardatosTotalOtros(){
+      this.Otros=0;
+      this.countF=0;
+      this.presupuestos.filter(x => {
+        if (x.mes == 'Enero') {
+          console.log(x.mes)
+          this.countF = this.countF + x.monto
+        }
+        if (x.tipoAsunto === 3) {
+          console.log(x.tipoAsunto)
+          this.Otros = this.Otros + x.monto
+        }
+      })
+      console.log('suma total de egresos ', this.Otros)
+      console.log('suma de Pago de administrador', this.countF)
+     }
 }
