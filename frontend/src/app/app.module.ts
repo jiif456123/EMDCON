@@ -26,8 +26,9 @@ import * as $ from 'jquery';
 import { FormsModule } from '@angular/forms';
 import { GestionarPresupuestoModule } from './Gestionar_Presupuesto/gestionar-presupuesto.module';
 import { GestionarReporteEconomicoModule } from './Gestionar_Reporte_Economico/gestionar-reporte-economico.module';
-
-
+import { ConsultarResidenteMorosoModule } from './Consultar_Residente_Moroso/consultar-residente-moroso.module';
+import { ConsultarVisitaModule } from './Consultar_Visita/consultar-visita.module';
+import { AdministrarVisitaModule } from './Administrar_Visita/administrar-visita.module';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,10 @@ import { GestionarReporteEconomicoModule } from './Gestionar_Reporte_Economico/g
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4'}),
     PerfectScrollbarModule,
     GestionarReporteEconomicoModule,
-    GestionarPresupuestoModule
+    GestionarPresupuestoModule,
+    ConsultarResidenteMorosoModule,
+    ConsultarVisitaModule,
+    AdministrarVisitaModule,
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }
