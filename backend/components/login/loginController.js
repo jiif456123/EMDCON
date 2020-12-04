@@ -48,7 +48,6 @@ router.post('/', (req, res) => {
         usuarioBD.password = '#'
 
         var token = jwt.sign({ usuario: usuarioBD }, SEED.seed, SEED.time);
-        console.log(usuarioBD)
         res.status(200).json({
             ok: true,
             usuario: usuarioBD,

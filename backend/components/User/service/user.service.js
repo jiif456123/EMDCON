@@ -51,7 +51,7 @@ var registarUsuario = (usuario) => {
         username: usuario.username,
         password: bcrypt.hashSync(usuario.password, 10),
         celular: usuario.celular,
-        foto: usuario.foto,
+        foto: 'foto',
         dni: usuario.dni,
         departamento: usuario.departamento
     });
@@ -67,8 +67,6 @@ var registarUsuario = (usuario) => {
 
 
 var modificarUsuarios = (id, usuario) => {
-
-    console.log(usuario, ' [usuario]');
 
     return new Promise((resolve, reject) => {
         User.findByIdAndUpdate(id, usuario, (err, usuarios) => {

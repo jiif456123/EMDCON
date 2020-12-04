@@ -20,7 +20,7 @@ export class ChatComponent implements OnInit, OnDestroy, AfterViewChecked, OnCha
   lmensajes: Message[] = [];
   ultimoMensaje: Message;
   idUser;
-  rol:string;
+  rol: string;
   constructor(
     private socketService: SocketService,
     private messageService: MessageService,

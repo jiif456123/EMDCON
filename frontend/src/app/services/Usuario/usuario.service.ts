@@ -77,5 +77,13 @@ export class UsuarioService {
   listar(){
     return this.httpClient.get<any>(this.url_API);
   }
+
+  registrar(usuario){
+    return this.httpClient.post<any>(this.url_API, usuario);
+  }
+
+  actualizar(data){
+    return this.httpClient.post<any>(this.url_API + '/actualizar', data);
+  }
   
 }
