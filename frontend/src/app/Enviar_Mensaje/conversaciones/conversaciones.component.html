@@ -8,7 +8,13 @@
             </span>
         </div>
         <div class="conversation-comp" *ngIf="rol!='RESIDENTE'">
-            <div *ngFor="let vconver of lConversacion">
+            <div class="search-box">
+                <div class="input-wrapper">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input [(ngModel)]="filtro1" placeholder="Buscar" type="text">
+                </div>
+            </div>
+            <div *ngFor="let vconver of lConversacion | filter: filtro1">
 
                 <div (click)="seleccionarChat(vconver);" class="friend-drawer friend-drawer--onhover">
                     <img class="profile-image"
@@ -26,8 +32,13 @@
         </div>
 
         <div class="conversation-comp" *ngIf="rol=='RESIDENTE'">
-
-            <div *ngFor="let vconver of lConversacion">
+            <div class="search-box">
+                <div class="input-wrapper">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input [(ngModel)]="filtro2" placeholder="Buscar" type="text">
+                </div>
+            </div>
+            <div *ngFor="let vconver of lConversacion | filter: filtro2">
 
                 <div (click)="seleccionarChat(vconver);" class="friend-drawer friend-drawer--onhover">
                     <img class="profile-image"

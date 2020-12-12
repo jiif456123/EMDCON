@@ -115,7 +115,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if (datosForm.txtApellidoPat == '' || datosForm.txtApellidoPat == null) {
+    if (datosForm.txtApellidoMat == '' || datosForm.txtApellidoMat == null) {
       swal('Error', 'Inserte apellido materno', 'warning')
       return;
     }
@@ -188,7 +188,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if (datosForm.txtApellidoPat == '' || datosForm.txtApellidoPat == null) {
+    if (datosForm.txtApellidoMat == '' || datosForm.txtApellidoMat == null) {
       swal('Error', 'Inserte apellido materno', 'warning')
       return;
     }
