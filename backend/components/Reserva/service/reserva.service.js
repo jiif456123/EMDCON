@@ -9,7 +9,6 @@ var listarreserva = () => {
 }
 
 var actualizarReserva = (reserva1, estado) => {
-    console.log(reserva + " " + estado)
     let id = reserva1
     let estado1 = {
         estado: estado,
@@ -28,8 +27,27 @@ var actualizarReserva = (reserva1, estado) => {
     })
 }
 
+var registrarReserva = (reserva1) => {
+    let query = new reserva({
+        nombre: reserva1.nombre,
+        areacomun: reserva1.areacomun,
+        persona: reserva1.persona,
+        fechaInicio: reserva1.fechaInicio,
+        fechaFin: reserva1.fechaFin,
+        estado: 2
+    })
+    return new Promise((resolve, reject) => {
+        query.save(query, (err, reser) => {
+            if (err) reject(err);
+            console.log(err);
+            resolve(reser);
+        });
+    })
+}
+
+
 module.exports = {
     listar: listarreserva,
-    actualizar: actualizarReserva
-
+    actualizar: actualizarReserva,
+    registrar: registrarReserva,
 }

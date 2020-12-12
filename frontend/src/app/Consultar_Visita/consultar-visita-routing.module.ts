@@ -1,12 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { ConsultarVisitaComponent } from './consultar-visita.component';
 
 const routes: Routes = [
   {
-    path: "",
-    children: [
-      
-    ],
+    path: '',
+    component: ConsultarVisitaComponent,
+    data: {
+      title: 'Consulta Visita'
+    }
   },
 ];
 

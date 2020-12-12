@@ -16,10 +16,19 @@ router.get('/', (req, res) => {
 })
 
 router.post('/actualizar', (req, res) => {
-    console.log(req.body);
     let reserva = req.body.reserva;
     let estado = req.body.estado;
     reservaService.actualizar(reserva, estado).then(data => {
+        http.ok(req, res, code.status.Ok.code, data)
+
+    }).catch(err => {
+        http.err(req, res, code.status.Internal_Server_Error.code, err)
+    })
+})
+
+router.post('/', (req, res) => {
+    let reserva = req.body;
+    reservaService.registrar(reserva).then(data => {
         http.ok(req, res, code.status.Ok.code, data)
 
     }).catch(err => {

@@ -43,12 +43,10 @@ router.post('/', (req, res) => { //post
 
 
 
-router.put('/:id', (req, res) => {
+router.post('/actualizar', (req, res) => {
 
-    let id = req.params.id;
-    let usuario = req.body;
-
-    console.log(id);
+    let id = req.body.id;
+    let usuario = req.body.usuario;
 
     usuarioService.modificar(id, usuario).then((data) => {
         http.ok(req, res, code.status.Ok.code, data);
