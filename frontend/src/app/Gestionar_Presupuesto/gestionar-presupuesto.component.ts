@@ -9,7 +9,7 @@ import { RegistrarPagodeServiciosModule } from '../Registrar_Pagos_de_Servicios/
 import swal from 'sweetalert2';
 import { Ingreso } from '../models/ingreso.model';
 //declare function init_plugins();
-
+import * as printJS from 'print-js';
 @Component({
   selector: 'app-gestionar-presupuesto',
   templateUrl: './gestionar-presupuesto.component.html',
@@ -19,6 +19,7 @@ export class GestionarPresupuestoComponent implements OnInit {
   precioIngresos = 0;
   preciodeFila = 0;
   Mantenimiento = 0;
+  teamJSON: JSON;
   Luz = 0;
   Agua = 0;
   Otros = 0;
@@ -51,7 +52,7 @@ export class GestionarPresupuestoComponent implements OnInit {
           console.log(x.mes)
           countF = countF + x.monto
         }
-        if (x.asunto === 5) {
+        if (x.asunto == "Mantenimiendo de ascensor") {
           console.log(x.tipoAsunto)
           countAF = countAF + x.monto
         }
@@ -73,14 +74,6 @@ export class GestionarPresupuestoComponent implements OnInit {
       0);
     console.log("Total: ", this.Total)
   }
-  calcular() {
-    this.Total = this.presupuestos.reduce((
-      acc,
-      obj,
-    ) => acc + (obj.monto * obj.asunto),
-      0);
-    console.log("Total: ", this.Total)
-  }
 
   calculardatosE() {
     this.countAF=0;
@@ -90,7 +83,7 @@ export class GestionarPresupuestoComponent implements OnInit {
         console.log(x.mes)
         this.countF = this.countF + x.monto
       }
-      if (x.asunto === 0) {
+      if (x.asunto == "Egreso") {
         console.log(x.tipoAsunto)
         this.countAF = this.countAF + x.monto
       }
@@ -106,7 +99,7 @@ export class GestionarPresupuestoComponent implements OnInit {
         console.log(x.mes)
         this.countF = this.countF + x.monto
       }
-      if (x.tipoAsunto === 1) {
+      if (x.tipoAsunto == "Egreso") {
         console.log(x.tipoAsunto)
         this.Egresos = this.Egresos + x.monto
       }
@@ -122,7 +115,7 @@ export class GestionarPresupuestoComponent implements OnInit {
         console.log(x.mes)
         this.countF = this.countF + x.monto
       }
-      if (x.tipoAsunto === 0) {
+      if (x.tipoAsunto == "Ingreso") {
         console.log(x.tipoAsunto)
         this.Ingresos = this.Ingresos + x.monto
       }
@@ -138,7 +131,7 @@ export class GestionarPresupuestoComponent implements OnInit {
         console.log(x.mes)
         this.countF = this.countF + x.monto
       }
-      if (x.asunto === 3) {
+      if (x.asunto == "Pago de Mantenimiento") {
         console.log(x.tipoAsunto)
         this.countAF = this.countAF + x.monto
       }
@@ -159,7 +152,7 @@ export class GestionarPresupuestoComponent implements OnInit {
           console.log(x.mes)
           this.countF = this.countF + x.monto
         }
-        if (x.tipoAsunto === 0) {
+        if (x.tipoAsunto == "Pago de Administrador") {
           console.log(x.tipoAsunto)
           this.Mantenimiento = this.Mantenimiento + x.monto
         }
@@ -175,7 +168,7 @@ export class GestionarPresupuestoComponent implements OnInit {
           console.log(x.mes)
           this.countF = this.countF + x.monto
         }
-        if (x.tipoAsunto === 1) {
+        if (x.tipoAsunto == "Pago de Administrador") {
           console.log(x.tipoAsunto)
           this.Agua = this.Agua + x.monto
         }
@@ -191,7 +184,7 @@ export class GestionarPresupuestoComponent implements OnInit {
           console.log(x.mes)
           this.countF = this.countF + x.monto
         }
-        if (x.tipoAsunto === 2) {
+        if (x.tipoAsunto == "Pago de Servicio de Luz") {
           console.log(x.tipoAsunto)
           this.Luz = this.Luz + x.monto
         }
@@ -207,7 +200,7 @@ export class GestionarPresupuestoComponent implements OnInit {
           console.log(x.mes)
           this.countF = this.countF + x.monto
         }
-        if (x.tipoAsunto === 3) {
+        if (x.tipoAsunto == "Pago de Personal") {
           console.log(x.tipoAsunto)
           this.Otros = this.Otros + x.monto
         }
@@ -215,4 +208,10 @@ export class GestionarPresupuestoComponent implements OnInit {
       console.log('suma total de egresos ', this.Otros)
       console.log('suma de Pago de administrador', this.countF)
      }
+
+
+     imprimir(){
+      printJS({printable: this.presupuestos , properties: ['asunto', 'estado', 'mes', 'monto'], type: 'json'})
+     }
+
 }

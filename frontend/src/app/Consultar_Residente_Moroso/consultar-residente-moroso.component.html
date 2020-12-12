@@ -6,9 +6,6 @@
             <div>
                 <input type="date" id="fecha" class="form-control" name="fecha" [(ngModel)]="resi.fecha" placeholder="Buscar Fecha ...." #mes>
             </div>
-            <form>
-                <button class="btn btn-primary m-1">Funcion completa</button>
-            </form>
         </div>
     </div>
     <div class="table-responsive">
@@ -31,11 +28,27 @@
                         <td class="text-center">S/ {{r.monto}}</td>
                         <td class="text-center">
                             <button class="btn btn-success btn-sm btn-block">
-                              <i class="mdi mdi-update mdi-18px">Ver</i>
-                          </button>
+                            <i class="mdi mdi-update mdi-18px" (click)="fnAbrirModal(content); fnSeleccionar(r)">Ver</i>
+                        </button>
                         </td>
                 </table>
             </div>
         </table>
     </div>
 </div>
+
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">VER DETALLE DEL RESIDENTE MOROSO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+<span aria-hidden="true"> × </span>
+</button>
+    </div>
+    <div class="modal-body">
+
+        <p class="text-center">Nombre del residente moroso: {{ residentess?.nombre }}</p>
+        <p class="text-center">Numero del Departamento: {{ residentess?.ndepartamento }}</p>
+        <p class="text-center">Monto del residente moroso: {{ residentess?.monto }}</p>
+        <p class="text-center">Fecha Programada: {{ residentess?.fecha | date: "dd/MM/yyyy" }}</p>
+    </div>
+</ng-template>

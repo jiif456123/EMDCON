@@ -7,6 +7,7 @@ import { Presupuesto } from '../models/presupuesto.model';
 import { FilterPipe } from 'ngx-filter-pipe';
 import { Resi } from '../models/resi.model';
 import { ResiService } from '../services/Resi/resi.service';
+import { refreshAll } from '../../../docs/assets/plugins/stickyfill/types/index';
 
 //declare function init_plugins();
 
@@ -27,9 +28,8 @@ export class ResiComponent implements OnInit {
   precioTotal: number;
   public presupuesto: Presupuesto = new Presupuesto();
   public resi: Resi = new Resi();
-
   public pres: any = { mes: '' }
-
+  residentess: Resi;
   presupuestos: Presupuesto[] = [];
   resis: Resi[] = [];
   term: any;
@@ -39,6 +39,7 @@ export class ResiComponent implements OnInit {
     private presupuestoService: PresupuestoService,
     private pipe: FilterPipe,
     private ResiService: ResiService,
+    private modalService: NgbModal,
   ) { }
   ngOnInit() {
     //init_plugins();
@@ -48,6 +49,14 @@ export class ResiComponent implements OnInit {
       this.resis = data.data;
       console.log(data.data);
     })
+  }
+
+  fnAbrirModal(content) {
+    this.modalService.open(content);
+  }
+
+  fnSeleccionar(r: Resi) {
+    this.residentess = r;
   }
 
 }

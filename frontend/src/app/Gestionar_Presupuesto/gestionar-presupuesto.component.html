@@ -8,6 +8,9 @@
                 <input type="text" id="mes" class="form-control" name="mes" [(ngModel)]="presupuesto.mes" placeholder="Buscar Mes ...." #mes>
             </div>
             <form>
+                <div class="col-sm-2">
+                    <button class="btn btn-block btn-primary" (click)="imprimir()">Imprimir</button>
+                </div>
                 <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Enero')" (click)="calculardatosE()" (click)="calculardatosTotalEgresos()" (click)="calculardatosTotalIngresos()">ENERO</button>
                 <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Febrero')" (click)="calculardatosF()">FEBRERO</button>
                 <button class="btn btn-primary m-1" name="mes" [(ngModel)]="presupuesto.mes" (click)="escribir('Marzo')">MARZO</button>
