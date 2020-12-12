@@ -10,6 +10,8 @@ const reservaController = require('../components/Reserva/controller/reserva.cont
 const areaComunService = require('../components/Area Comun/controller/areacomun.controller');
 const resiController = require('../components/Resi/controller/resi.controller')
 const visitaController = require('../components/Visita/controller/visita.controller')
+const documentoController = require('../components/Documento/controller/documento.controller')
+
 const rutas = function(app) {
     app.use('/user', userController)
     app.use('/presupuesto', presupuestoController)
@@ -23,6 +25,7 @@ const rutas = function(app) {
     app.use('/areacomun', areaComunService)
     app.use('/resi', resiController)
     app.use('/visita', visitaController)
+    app.use('/documento', documentoController)
 }
 
 module.exports = rutas;
