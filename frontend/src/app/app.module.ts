@@ -16,6 +16,7 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
 
+
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true,
   wheelPropagation: false
@@ -26,6 +27,7 @@ import * as $ from 'jquery';
 import { FormsModule } from '@angular/forms';
 import { GestionarPresupuestoModule } from './Gestionar_Presupuesto/gestionar-presupuesto.module';
 import { GestionarReporteEconomicoModule } from './Gestionar_Reporte_Economico/gestionar-reporte-economico.module';
+import { RegistrarPaqueteModule } from './RegistrarPaquete/registrar-paquete-servicios.module';
 
 
 
@@ -49,7 +51,8 @@ import { GestionarReporteEconomicoModule } from './Gestionar_Reporte_Economico/g
     AgmCoreModule.forRoot({apiKey: 'AIzaSyDKXKdHQdtqgPVl2HI2RnUa_1bjCxRCQo4'}),
     PerfectScrollbarModule,
     GestionarReporteEconomicoModule,
-    GestionarPresupuestoModule
+    GestionarPresupuestoModule,
+    RegistrarPaqueteModule,
   ],
   providers: [
     { provide: PERFECT_SCROLLBAR_CONFIG, useValue: DEFAULT_PERFECT_SCROLLBAR_CONFIG }

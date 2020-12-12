@@ -89,6 +89,11 @@ export const Full_ROUTES: Routes = [
         path: 'presupuesto',
         loadChildren: () => import('../../Gestionar_Presupuesto/gestionar-presupuesto.module').then(m => m.GestionarPresupuestoModule)
     },
+    {
+        canActivate: [LoginGuard],
+        path: 'registrarpaquete',
+        loadChildren: () => import('../../RegistrarPaquete/registrar-paquete-servicios.module').then(m => m.RegistrarPaqueteModule)
+    },
     /* {
       path: 'nuevopresupuesto/:id',
       loadChildren: () => import('../../Gestionar_Presupuesto/RegistrarPresupuesto/registrar-presupuesto.module').then(m => m.RegistrarPresupuestoModule)
