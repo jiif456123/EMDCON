@@ -25,8 +25,24 @@ var listar = () => {
     })
 }
 
+var actualizar = (id1, body) => {
+    let id = id1
+    return new Promise((resolve, reject) => {
+        documento.findByIdAndUpdate(id, body)
+            .exec((err, data) => {
+                if (err) {
+                    console.log(err);
+
+                    reject(err);
+                }
+                console.log(data);
+                resolve(data)
+            })
+    })
+}
 
 module.exports = {
     crear: guardar,
-    listar: listar
+    listar: listar,
+    actualizar: actualizar
 }

@@ -19,9 +19,13 @@ export class GestionarDocsComponent implements OnInit {
   ]
   filtro;
   file;
+  fileAct;
   documento: Documento[];
   formFile: FormGroup;
+  formDocumentAct: FormGroup;
   @ViewChild('content') modal;
+  @ViewChild('contentActualizar') modalAct;
+  documentoSeleccionado: Documento;
 
   constructor(
     private docService: DocumentoService,
@@ -40,12 +44,20 @@ export class GestionarDocsComponent implements OnInit {
       categoria: ['', Validators.required]
     })
 
+    this.formDocumentAct = this.fb.group({
+      nombre: ['', Validators.required],
+      resumen: ['', Validators.required],
+      categoria: ['', Validators.required]
+    })
   }
 
   handleFile(event) {
     this.file = event;
-    console.log(this.file[0])
 
+  }
+
+  handleFileAct(event) {
+    this.fileAct= event;
   }
 
   onSubmit() {
@@ -78,6 +90,7 @@ export class GestionarDocsComponent implements OnInit {
       }
       this.docService.insertar(query).subscribe(res => {
         this.docService.listar().subscribe(data => {
+          swal('Exito', 'Se inserto correctamente', 'success')
           this.documento = data.data;
           this.formFile.reset();
         })
@@ -91,5 +104,73 @@ export class GestionarDocsComponent implements OnInit {
 
   abrirModal() {
     this.modalService.open(this.modal);
+  }
+
+  cerrarModal(){
+    this.fileAct= null;
+    this.file=null
+  }
+  abrirModalAct(row: Documento) {
+    this.modalService.open(this.modalAct);
+    this.documentoSeleccionado = row;
+
+    this.formDocumentAct.controls.nombre.setValue(row.nombre);
+    this.formDocumentAct.controls.resumen.setValue(row.resumen);
+    this.formDocumentAct.controls.categoria.setValue(row.categoria);
+  }
+
+  actualizar() {
+    if (this.formDocumentAct.invalid) {
+      swal('Error', 'Llene los datos!', 'warning')
+      return;
+    }
+
+    if (this.fileAct == null) {
+      var vDatos = this.formDocumentAct.value;
+        let query = {
+          id: this.documentoSeleccionado._id,
+          documento: {
+            nombre: vDatos.nombre,
+            resumen: vDatos.resumen,
+            categoria: vDatos.categoria
+          },
+        }
+        this.docService.actualizar(query).subscribe(res => {
+          this.docService.listar().subscribe(data => {
+            swal('Exito', 'Se actualizo correctamente', 'success')
+            this.documento = data.data;
+            this.formFile.reset();
+          })
+        })
+
+    }else{
+      var vDatos = this.formDocumentAct.value;
+
+      const reader = new FileReader();
+  
+      reader.readAsDataURL(this.fileAct[0]);
+  
+      reader.onload = () => {
+        let query = {
+          id: this.documentoSeleccionado._id,
+          file: reader.result,
+          documento: {
+            nombre: vDatos.nombre,
+            resumen: vDatos.resumen,
+            filePath: '',
+            categoria: vDatos.categoria
+          },
+          nameFile: this.fileAct[0].name
+        }
+        this.docService.actualizar(query).subscribe(res => {
+          swal('Exito', 'Se actualizo correctamente', 'success')
+          this.docService.listar().subscribe(data => {
+            this.documento = data.data;
+            this.formFile.reset();
+          })
+        })
+      }
+    }
+
   }
 }

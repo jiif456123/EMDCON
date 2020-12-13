@@ -28,9 +28,13 @@
                         {{ res.nombre }}
                     </th>
                     <td>{{ res.resumen }}</td>
+                    <td>{{ res.categoria }}</td>
                     <td>
                         <button style="margin: 3px" (click)="descargar(res.filePath)" class="btn btn-dark">
                             <i class="fa fa-download" aria-hidden="true"></i>
+                        </button>
+                        <button style="margin: 3px" (click)="abrirModalAct(res)" class="btn btn-dark">
+                            <i class="fa fa-edit" aria-hidden="true"></i>
                         </button>
                     </td>
                 </tr>
@@ -43,7 +47,7 @@
 <ng-template #content let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Usuario</h4>
-        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click'); cerrarModal()">
             <span aria-hidden="true"> × </span>
         </button>
     </div>
@@ -57,23 +61,71 @@
             </div>
             <div class="form-group col-md-12">
                 <label for="res">Resumen:</label>
-                <input formControlName="resumen" type="text" class="form-control" id="res"
-                    placeholder="Resumen">
+                <input formControlName="resumen" type="text" class="form-control" id="res" placeholder="Resumen">
             </div>
             <div class="form-group col-md-12">
                 <label for="exampleFormControlFile1">Archivo</label>
-                <input type="file" class="form-control-file" (change)="handleFile($event.target.files)">        
-            </div> 
+                <input type="file" class="form-control-file" (change)="handleFile($event.target.files)">
+            </div>
             <div class="form-group col-md-12">
                 <label for="ROL">Categoria:</label>
                 <select formControlName="categoria" class="form-control" id="ROL">
                     <option>Seleccione</option>
                     <option *ngFor="let vCate of this.categorias" [value]="vCate">{{vCate}}</option>
                 </select>
-            </div>           
+            </div>
         </form>
         <div class="col-md-12 d-flex justify-content-end" style="margin-bottom: 10px;">
             <button (click)="onSubmit()" type="button" class="btn btn-primary">Registrar</button>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #contentActualizar let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Documento</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click'); cerrarModal()">
+            <span aria-hidden="true"> × </span>
+        </button>
+    </div>
+    <div class="modal-body">
+
+        <form [formGroup]="formDocumentAct" class="row">
+
+            <div class="form-group col-md-12">
+                <label for="Nombreasd">Nombre:</label>
+                <input formControlName="nombre" type="text" class="form-control" id="Nombreasd" placeholder="">
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="Nombre">Resumen:</label>
+                <input formControlName="resumen" type="text" class="form-control" id="Nombre"
+                    placeholder="resumen">
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="Paterno">Categoría:</label>
+                <select formControlName="categoria" class="form-control" id="Paterno">
+                    <option>Seleccione</option>
+                    <option *ngFor="let vCate of this.categorias" [value]="vCate">{{vCate}}</option>
+                </select>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="Materno">Archivo actual:</label>
+                <button style="margin: 3px" (click)="descargar(documentoSeleccionado.filePath)" class="btn btn-dark">
+                    <i class="fa fa-download" aria-hidden="true"></i>
+                </button>
+            </div>
+
+            <div class="form-group col-md-12">
+                <label for="exampleFormControlFile1">Nuevo Archivo</label>
+                <input type="file" class="form-control-file" (change)="handleFileAct($event.target.files)">
+            </div>
+
+        </form>
+        <div class="col-md-12 d-flex justify-content-end" style="margin-bottom: 10px;">
+            <button (click)="actualizar()" type="button" class="btn btn-primary">Actualizar</button>
         </div>
     </div>
 </ng-template>
