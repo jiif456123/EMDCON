@@ -21,6 +21,10 @@ export class DocumentoService {
         return this.http.post<any>(this.url_API, obj);
     }
 
+    actualizar(obj) {
+        return this.http.post<any>(this.url_API+'/actualizar', obj);
+    }
+
     descargar(fileName) {
         this.http.get(this.url_API + '/file/' + fileName, { responseType: 'blob' }).subscribe(res => {
             window.open(window.URL.createObjectURL(res));
