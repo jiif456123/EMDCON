@@ -39,7 +39,6 @@ export class RegistroPaqueteComponent implements OnInit {
 
     this.PaqueteService.listar().subscribe(data => {
       this.registrarpaquetes = data.data;
-      console.log(data.data);
     })
   }
 
