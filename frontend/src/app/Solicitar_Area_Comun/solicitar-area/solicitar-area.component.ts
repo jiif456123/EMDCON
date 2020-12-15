@@ -59,7 +59,7 @@ export class SolicitarAreaComponent implements OnInit {
     }
 
     if(this.fechaFin==null){
-      swal('Error', 'Escoja fecha de inicio', 'warning')
+      swal('Error', 'Escoja fecha fin', 'warning')
       return;
     }
 
@@ -75,7 +75,7 @@ export class SolicitarAreaComponent implements OnInit {
     var vdatos = this.formReserva.value;
 
     if(vdatos.cboArea==null || vdatos.cboArea==''){
-      swal('Error', 'Escoja fecha de inicio', 'warning')
+      swal('Error', 'Escoja area', 'warning')
       return;
     }
 
@@ -83,6 +83,16 @@ export class SolicitarAreaComponent implements OnInit {
       swal('Error', 'Inserte motivo de la reserva', 'warning')
       return;
     }
+
+    var fechaFin:number = parseInt(this.fechaFin.getTime());
+    var fechaInicio:number = parseInt(this.fechaInicio.getTime());
+
+    var unDia = 86400000;
+    if(fechaFin-fechaInicio>unDia){
+      swal('Error', 'La reserva no puede durar mas de un día!', 'warning')
+      return;
+    }
+    
 
     var query = {
       fechaInicio: this.fechaInicio,
