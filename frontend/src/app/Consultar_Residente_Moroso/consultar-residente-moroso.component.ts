@@ -1,4 +1,4 @@
-import { Component, OnInit, Pipe, PipeTransform } from '@angular/core';
+import { Component, OnInit, Pipe, PipeTransform, ViewChild } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 import { NgbModal, ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -33,6 +33,9 @@ export class ResiComponent implements OnInit {
   presupuestos: Presupuesto[] = [];
   resis: Resi[] = [];
   term: any;
+
+  @ViewChild('content') modal; 
+
   constructor(
     private ActivatedRoute: ActivatedRoute,
     private router: Router,
@@ -47,15 +50,11 @@ export class ResiComponent implements OnInit {
 
     this.ResiService.listar().subscribe(data => {
       this.resis = data.data;
-      console.log(data.data);
     })
   }
 
-  fnAbrirModal(content) {
-    this.modalService.open(content);
-  }
-
-  fnSeleccionar(r: Resi) {
+  fnAbrirModal(r: Resi) {
+    this.modalService.open(this.modal);
     this.residentess = r;
   }
 

@@ -1,10 +1,11 @@
 <div class="form-group">
     <label>Residentes Morosos</label>
     <div class="card">
-        <div class="card-header text-uppercase" name="fecha" [(ngModel)]="resi.fecha">Seleccionar la fecha</div>
+        <div class="card-header text-uppercase" name="fecha">Seleccionar la fecha</div>
         <div class="card-body">
             <div>
-                <input type="date" id="fecha" class="form-control" name="fecha" [(ngModel)]="resi.fecha" placeholder="Buscar Fecha ...." #mes>
+                <input type="date" id="fecha" class="form-control" name="fecha" [(ngModel)]="resi.fecha"
+                    placeholder="Buscar Fecha ...." #mes>
             </div>
         </div>
     </div>
@@ -27,9 +28,9 @@
                         <td class="text-center">{{r.fecha | date:'dd/MM/yyyy'}}</td>
                         <td class="text-center">S/ {{r.monto}}</td>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm btn-block">
-                            <i class="mdi mdi-update mdi-18px" (click)="fnAbrirModal(content); fnSeleccionar(r)">Ver</i>
-                        </button>
+                            <button (click)="fnAbrirModal(r);" class="btn btn-success btn-sm btn-block">
+                                <i class="mdi mdi-update mdi-18px">Ver</i>
+                            </button>
                         </td>
                 </table>
             </div>
@@ -41,8 +42,8 @@
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">VER DETALLE DEL RESIDENTE MOROSO</h4>
         <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-<span aria-hidden="true"> × </span>
-</button>
+            <span aria-hidden="true"> × </span>
+        </button>
     </div>
     <div class="modal-body">
 

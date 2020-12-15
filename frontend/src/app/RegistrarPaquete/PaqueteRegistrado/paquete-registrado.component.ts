@@ -39,10 +39,8 @@ export class PaqueteRegistradoComponent implements OnInit {
     //init_plugins();
     
     this.paquetes = [];
-    console.log(this.paquetes)
     this.paqueteService.listar().subscribe(data => {
       this.paquetes = data.data;
-      console.log(data.data)
     })
     this.formPaquete = new FormGroup({
       '_id': new FormControl(''),
