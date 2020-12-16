@@ -1,6 +1,6 @@
 import { query } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Departamento } from 'src/app/models/departamento.model';
 import { User } from 'src/app/models/user.model';
@@ -53,22 +53,22 @@ export class PerfilesComponent implements OnInit {
     })
 
     this.formUsuario = this.fb.group({
-      txtNombre: [''],
+      txtNombre: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtUserName: [''],
-      txtDNI: [''],
-      txtCelular: [''],
-      txtApellidoPat: [''],
-      txtApellidoMat: [''],
+      txtDNI: ['', Validators.pattern("^[0-9]*$")],
+      txtCelular: ['', Validators.pattern("^[0-9]*$")],
+      txtApellidoPat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
+      txtApellidoMat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtPassword: [''],
       cboROL: [''],
     })
 
     this.formUsuarioAct = this.fb.group({
       txtUserName: [''],
-      txtNombre: [''],
-      txtApellidoPat: [''],
-      txtApellidoMat: [''],
-      txtCelular: [''],
+      txtNombre: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
+      txtApellidoPat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
+      txtApellidoMat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
+      txtCelular: ['', Validators.pattern("^[0-9]*$")],
     })
   }
 
@@ -110,8 +110,14 @@ export class PerfilesComponent implements OnInit {
 
   agregarUsuario() {
     var datosForm = this.formUsuario.value;
+
     if (datosForm.txtNombre == '' || datosForm.txtNombre == null) {
       swal('Error', 'Inserte nombre', 'warning')
+      return;
+    }
+
+    if(this.formUsuario.controls.txtNombre.hasError('pattern')){
+      swal('Error', 'El nombre no puede contener numeros', 'warning')
       return;
     }
 
@@ -120,8 +126,18 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
+    if(this.formUsuario.controls.txtApellidoMat.hasError('pattern')){
+      swal('Error', 'El apellido materno no puede contener numeros', 'warning')
+      return;
+    }
+
     if (datosForm.txtApellidoPat == '' || datosForm.txtApellidoPat == null) {
       swal('Error', 'Inserte apellido paterno', 'warning')
+      return;
+    }
+
+    if(this.formUsuario.controls.txtApellidoPat.hasError('pattern')){
+      swal('Error', 'El apellido paterno no puede contener numeros', 'warning')
       return;
     }
 
@@ -140,8 +156,18 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
+    if(this.formUsuario.controls.txtCelular.hasError('pattern')){
+      swal('Error', 'El celular no puede contener letras', 'warning')
+      return;
+    }
+
     if (datosForm.txtDNI == '' || datosForm.txtDNI == null) {
       swal('Error', 'Inserte DNI', 'warning')
+      return;
+    }
+
+    if(this.formUsuario.controls.txtDNI.hasError('pattern')){
+      swal('Error', 'El DNI no puede contener letras', 'warning')
       return;
     }
 
@@ -174,6 +200,7 @@ export class PerfilesComponent implements OnInit {
     this.userService.registrar(query).subscribe(data => {
       swal('Correcto', 'Se inserto de manera correcta', 'success')
       this.userService.listar().subscribe(data => {
+        this.formUsuario.reset();
         this.usuarios = data.data;
       })
     })
@@ -188,8 +215,18 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
+    if(this.formUsuarioAct.controls.txtNombre.hasError('pattern')){
+      swal('Error', 'El nombre no puede contener numeros', 'warning')
+      return;
+    }
+
     if (datosForm.txtApellidoMat == '' || datosForm.txtApellidoMat == null) {
       swal('Error', 'Inserte apellido materno', 'warning')
+      return;
+    }
+
+    if(this.formUsuarioAct.controls.txtApellidoMat.hasError('pattern')){
+      swal('Error', 'El apellido materno no puede contener numeros', 'warning')
       return;
     }
 
@@ -198,13 +235,24 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
+    if(this.formUsuarioAct.controls.txtApellidoPat.hasError('pattern')){
+      swal('Error', 'El apellido paterno no puede contener numeros', 'warning')
+      return;
+    }
+
     if (datosForm.txtUserName == '' || datosForm.txtUserName == null) {
       swal('Error', 'Inserte nombre de usuario', 'warning')
       return;
     }
 
+
     if (datosForm.txtCelular == '' || datosForm.txtCelular == null) {
       swal('Error', 'Inserte celular', 'warning')
+      return;
+    }
+
+    if(this.formUsuarioAct.controls.txtCelular.hasError('pattern')){
+      swal('Error', 'El celular no puede contener letras', 'warning')
       return;
     }
 
