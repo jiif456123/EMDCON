@@ -13,7 +13,7 @@ import { listLazyRoutes } from '@angular/compiler/src/aot/lazy_routes';
 import { Ng2SearchPipe } from 'ng2-search-filter';
 import { TemplateAst } from '@angular/compiler';
 import { data } from 'jquery';
-
+import { ExcelService } from '../services/presupuesto/excel.service';
 //declare function init_plugins();
 
 @Component({
@@ -73,6 +73,7 @@ export class GestionarPresupuestoComponent implements OnInit {
     private router: Router,
     private presupuestoService: PresupuestoService,
     private pipe: FilterPipe,
+    private excelService: ExcelService,
   ) {
   }
   ngOnInit() {
@@ -221,6 +222,9 @@ export class GestionarPresupuestoComponent implements OnInit {
       printJS({printable: this.presupuestos , properties: ['asunto', 'estado', 'mes', 'monto'], type: 'json'})
      }
 
+     exportToExcel(event) {
+      this.excelService.exportAsExcelFile(this.presupuestos, 'EMDCONPRESUPUESTO');
+    }
     //* Sumatotal(){
    //*    this.precioTotal=0;
    //*    var presupuesto = this.presupuestos(this.press, this.term);
