@@ -8,6 +8,7 @@ import { SolicitarAreaComponent } from './solicitar-area/solicitar-area.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-datetimepicker';
+import { Ng2SearchPipeModule } from "ng2-search-filter";
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { DlDateTimeDateModule, DlDateTimePickerModule } from 'angular-bootstrap-
     FormsModule,
     DlDateTimeDateModule,  // <--- Determines the data type of the model
     DlDateTimePickerModule,
+    Ng2SearchPipeModule
   ],
   exports: [],
   declarations: [SolicitarAreaComponent],
