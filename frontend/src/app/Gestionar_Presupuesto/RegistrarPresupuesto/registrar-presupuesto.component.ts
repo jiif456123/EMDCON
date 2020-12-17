@@ -4,6 +4,7 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { PresupuestoService } from '../../services/presupuesto/presupuesto.service';
 import { Presupuesto } from '../../models/presupuesto.model';
+
 //declare function init_plugins();
 
 @Component({
@@ -13,9 +14,41 @@ import { Presupuesto } from '../../models/presupuesto.model';
 })
 
 export class RegistrarPresupuestoComponent implements OnInit {
-
+  asunto = [
+    { desc: 'Mantenimiento de ascensor' },
+    { desc: 'Pago de administrador' },
+    { desc: 'Pago de personal' },
+    { desc: 'Pago de mantenimiento' },
+    { desc: 'Pago de servicio de luz' },
+    { desc: 'Pago de servicio de agua' },
+    { desc: 'Pago de otros servicios' },
+  ];
+  pago = [
+    { ra: 'Pagado' },
+    { ra: 'No pagado' },
+  ];
+  tipo = [
+    { ga: 'Ingreso' },
+    { ga: 'Egreso' },
+  ];
+  mess = [
+    { ta: 'Enero' },
+    { ta: 'Febrero' },
+    { ta: 'Marzo' },
+    { ta: 'Abril' },
+    { ta: 'Mayo' },
+    { ta: 'Junio' },
+    { ta: 'Julio' },
+    { ta: 'Agosto' },
+    { ta: 'Septiembre' },
+    { ta: 'Octubre' },
+    { ta: 'Noviembre' },
+    { ta: 'Diciembre' },
+  ];
   id: string;
   editar: boolean;
+  presupuestoActualizar: Presupuesto;
+  formCrearPresupuesto: FormGroup
   presupuesto: Presupuesto;
   presupuestoRegistrar: Presupuesto;
   formPresupuesto: FormGroup;
@@ -27,7 +60,6 @@ export class RegistrarPresupuestoComponent implements OnInit {
   montoAux: boolean;
   estadoAux: boolean;
   tipoAsuntoAux: boolean;
-
   constructor(
     private presupuestoService: PresupuestoService,
     private router: Router,
