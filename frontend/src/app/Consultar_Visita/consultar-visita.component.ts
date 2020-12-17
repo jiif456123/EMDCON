@@ -122,4 +122,5 @@ export class ConsultarVisitaComponent implements OnInit {
       }
     })
   }
+
 }
