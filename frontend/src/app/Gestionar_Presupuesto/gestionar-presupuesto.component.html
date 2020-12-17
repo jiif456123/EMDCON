@@ -12,7 +12,7 @@
             <button class="btn btn-block btn-primary" (click)="imprimir()">Imprimir</button>
         </div>
         <div class="col-sm-2">
-            <button class="btn btn-block btn-primary">Excel</button>
+            <button class="btn btn-block btn-primary" (click)="exportToExcel(presupuesto)">Excel</button>
         </div>
         <div class="col-sm-2">
             <button class="btn btn-block btn-primary" (click)="IngresosPre()" (click)="EgresosPre()" (click)="AscensorPre()" (click)="MantPre()" (click)="AguaPre()" (click)="LuzPre()">Calculo</button>
@@ -25,13 +25,6 @@
                 <input type="text" class="form-control" [(ngModel)]="presupuesto.mes" placeholder="Buscar Mes ...." #mes>
             </div>
         </div>
-    </div>
-
-    <div class="form-group col-lg-16 col-md-16 col-xs-16">
-        <label>Seleccionar Asunto</label>
-        <select class="form-control">
-      <option *ngFor="let v of this.mess" [value]="v.ta" (click)="IngresosPre()">{{v.ta}} </option>
-</select>
     </div>
 
     <div>
