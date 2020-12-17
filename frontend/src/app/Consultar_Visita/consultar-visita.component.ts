@@ -34,7 +34,6 @@ export class ConsultarVisitaComponent implements OnInit {
     //init_plugins();
     this.visitaService.listar().subscribe(data => {
       this.visitas = data.data;
-      console.log(data.data);
     })
   }
 

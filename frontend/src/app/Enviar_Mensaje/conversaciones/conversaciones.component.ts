@@ -27,6 +27,8 @@ export class ConversacionesComponent implements OnInit {
 
   @ViewChild(ChatComponent, {static: false}) childRef: ChatComponent;
 
+  filtro1;
+  filtro2;
   constructor(
     private modalService: NgbModal,
     private chatService: ChatService,

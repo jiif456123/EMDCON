@@ -1,6 +1,73 @@
-<div class="container">
+<div class="row no-gutters">
+    <div class="col-md-4 border-right">
+        <div class="settings-tray">
+            <img class="profile-image" src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/filip.jpg"
+                alt="Profile img">
+            <span class="settings-tray--right">
+                <i (click)="fnAbrirModal(content)" class="fa fa-plus-circle"></i>
+            </span>
+        </div>
+        <div class="conversation-comp" *ngIf="rol!='RESIDENTE'">
+            <div class="search-box">
+                <div class="input-wrapper">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input [(ngModel)]="filtro1" placeholder="Buscar" type="text">
+                </div>
+            </div>
+            <div *ngFor="let vconver of lConversacion | filter: filtro1">
 
-    <div class="row rounded-lg overflow-hidden shadow">
+                <div (click)="seleccionarChat(vconver);" class="friend-drawer friend-drawer--onhover">
+                    <img class="profile-image"
+                        src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
+                    <div class="text">
+                        <h6>{{vconver.user.nombre}} {{vconver.user.apellidoPaterno}}</h6>
+                        <p class="text-muted">{{vconver.lastMessage}}</p>
+                    </div>
+                    <span class="time text-muted small">{{vconver.timeStamp| date:'shortDate'}}</span>
+                </div>
+
+                <hr>
+
+            </div>
+        </div>
+
+        <div class="conversation-comp" *ngIf="rol=='RESIDENTE'">
+            <div class="search-box">
+                <div class="input-wrapper">
+                    <i class="fa fa-search" aria-hidden="true"></i>
+                    <input [(ngModel)]="filtro2" placeholder="Buscar" type="text">
+                </div>
+            </div>
+            <div *ngFor="let vconver of lConversacion | filter: filtro2">
+
+                <div (click)="seleccionarChat(vconver);" class="friend-drawer friend-drawer--onhover">
+                    <img class="profile-image"
+                        src="https://www.clarity-enhanced.net/wp-content/uploads/2020/06/robocop.jpg" alt="">
+                    <div class="text">
+                        <h6>{{vconver.admin.nombre}}</h6>
+                        <p class="text-muted">{{vconver.lastMessage}}</p>
+                    </div>
+                    <span class="time text-muted small">{{vconver.timeStamp| date:'shortDate'}}</span>
+                </div>
+
+                <hr>
+            </div>
+        </div>
+
+    </div>
+    <div *ngIf="pOpcion==0" class="col-md-8">
+        <div style="width: 100%; height: 100%;" class="d-flex justify-content-center align-items-center">
+            <h5>
+                Seleccione un chat para empezar
+            </h5>
+        </div>
+    </div>
+    <div *ngIf="pOpcion==1" class="col-md-8">
+        <app-chat [chatSeleccionado]="vchatSeleccionado"></app-chat>
+    </div>
+</div>
+
+<!-- <div class="row rounded-lg overflow-hidden shadow">
 
         <div class="col-5 px-0">
             <div class="bg-white">
@@ -25,7 +92,8 @@
                                 </div>
                                 <div style="margin-left: 10px;" class="media-body">
                                     <h6 [ngClass]="vconver._id==vchatSeleccionado?._id ?'text-white':''"
-                                        class="mt-0 msg-title">{{vconver.user.nombre}} {{vconver.user.apellidoPaterno}}</h6>
+                                        class="mt-0 msg-title">{{vconver.user.nombre}} {{vconver.user.apellidoPaterno}}
+                                    </h6>
                                     <p [ngClass]="vconver._id==vchatSeleccionado?._id ?'text-white':''"
                                         class="msg-info">
                                         {{vconver.lastMessage}}</p>
@@ -76,8 +144,7 @@
             </div>
         </div>
 
-    </div>
-</div>
+    </div> -->
 
 <ng-template #content let-modal>
     <div class="modal-header">
