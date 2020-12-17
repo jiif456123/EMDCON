@@ -21,6 +21,7 @@ export class SolicitarAreaComponent implements OnInit {
   @ViewChild('content') modal;
   fechaInicio;
   fechaFin;
+  filtro;
 
   fechaHoy = new Date()
   constructor(
