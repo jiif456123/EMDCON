@@ -55,8 +55,8 @@ export class PerfilesComponent implements OnInit {
     this.formUsuario = this.fb.group({
       txtNombre: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtUserName: [''],
-      txtDNI: ['', Validators.pattern("^[0-9]*$")],
-      txtCelular: ['', Validators.pattern("^[0-9]*$")],
+      txtDNI: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(8), Validators.maxLength(8)]],
+      txtCelular: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(9), Validators.maxLength(9)]],
       txtApellidoPat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtApellidoMat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtPassword: [''],
@@ -68,7 +68,7 @@ export class PerfilesComponent implements OnInit {
       txtNombre: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtApellidoPat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
       txtApellidoMat: ['', Validators.pattern(/^[a-zA-Z\s]*$/)],
-      txtCelular: ['', Validators.pattern("^[0-9]*$")],
+      txtCelular: ['', [Validators.pattern("^[0-9]*$"), Validators.minLength(9), Validators.maxLength(9)]],
     })
   }
 
@@ -116,7 +116,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuario.controls.txtNombre.hasError('pattern')){
+    if (this.formUsuario.controls.txtNombre.hasError('pattern')) {
       swal('Error', 'El nombre no puede contener numeros', 'warning')
       return;
     }
@@ -126,7 +126,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuario.controls.txtApellidoMat.hasError('pattern')){
+    if (this.formUsuario.controls.txtApellidoMat.hasError('pattern')) {
       swal('Error', 'El apellido materno no puede contener numeros', 'warning')
       return;
     }
@@ -136,7 +136,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuario.controls.txtApellidoPat.hasError('pattern')){
+    if (this.formUsuario.controls.txtApellidoPat.hasError('pattern')) {
       swal('Error', 'El apellido paterno no puede contener numeros', 'warning')
       return;
     }
@@ -156,8 +156,18 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuario.controls.txtCelular.hasError('pattern')){
+    if (this.formUsuario.controls.txtCelular.hasError('pattern')) {
       swal('Error', 'El celular no puede contener letras', 'warning')
+      return;
+    }
+
+    if (this.formUsuario.controls.txtCelular.hasError('minlength')) {
+      swal('Error', 'El celular tiene que tener 9 dígitos!', 'warning')
+      return;
+    }
+
+    if (this.formUsuario.controls.txtCelular.hasError('maxlength')) {
+      swal('Error', 'El celular tiene que tener 9 dígitos!', 'warning')
       return;
     }
 
@@ -166,8 +176,23 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuario.controls.txtDNI.hasError('pattern')){
+    if (this.formUsuario.controls.txtDNI.hasError('pattern')) {
       swal('Error', 'El DNI no puede contener letras', 'warning')
+      return;
+    }
+
+    if (this.formUsuario.controls.txtDNI.hasError('minlength')) {
+      swal('Error', 'El DNI tiene que tener 8 dígitos!', 'warning')
+      return;
+    }
+
+    if (this.formUsuario.controls.txtDNI.hasError('maxlength')) {
+      swal('Error', 'El DNI tiene que tener 8 dígitos!', 'warning')
+      return;
+    }
+
+    if (Number(datosForm.txtDNI) == 0) {
+      swal('Error', 'El DNI no puede contener solos ceros!', 'warning')
       return;
     }
 
@@ -215,7 +240,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuarioAct.controls.txtNombre.hasError('pattern')){
+    if (this.formUsuarioAct.controls.txtNombre.hasError('pattern')) {
       swal('Error', 'El nombre no puede contener numeros', 'warning')
       return;
     }
@@ -225,7 +250,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuarioAct.controls.txtApellidoMat.hasError('pattern')){
+    if (this.formUsuarioAct.controls.txtApellidoMat.hasError('pattern')) {
       swal('Error', 'El apellido materno no puede contener numeros', 'warning')
       return;
     }
@@ -235,7 +260,7 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuarioAct.controls.txtApellidoPat.hasError('pattern')){
+    if (this.formUsuarioAct.controls.txtApellidoPat.hasError('pattern')) {
       swal('Error', 'El apellido paterno no puede contener numeros', 'warning')
       return;
     }
@@ -251,8 +276,18 @@ export class PerfilesComponent implements OnInit {
       return;
     }
 
-    if(this.formUsuarioAct.controls.txtCelular.hasError('pattern')){
+    if (this.formUsuarioAct.controls.txtCelular.hasError('pattern')) {
       swal('Error', 'El celular no puede contener letras', 'warning')
+      return;
+    }
+
+    if (this.formUsuarioAct.controls.txtCelular.hasError('minlength')) {
+      swal('Error', 'El celular tiene que tener 9 dígitos!', 'warning')
+      return;
+    }
+
+    if (this.formUsuarioAct.controls.txtCelular.hasError('maxlength')) {
+      swal('Error', 'El celular tiene que tener 9 dígitos!', 'warning')
       return;
     }
 
