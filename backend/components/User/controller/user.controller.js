@@ -55,4 +55,16 @@ router.post('/actualizar', (req, res) => {
     });
 });
 
+router.post('/contrasena', (req, res) => {
+
+    let correo = req.body.correo;
+    let password = req.body.password;
+
+    usuarioService.cambiarContresena(correo, password).then((data) => {
+        http.ok(req, res, code.status.Ok.code, data);
+    }).catch((error) => {
+        http.err(req, res, code.status.Internal_Server_Error.code, error, error)
+    });
+});
+
 module.exports = router;

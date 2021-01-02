@@ -1,13 +1,10 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { PublicarDocumentoComponent } from "./publicar-documento/publicar-documento.component";
 
 const routes: Routes = [
-  {
-    path: "",
-    children: [
-      
-    ],
-  },
+  {path: '', component: PublicarDocumentoComponent, data: { title: 'Publica Documentos' }}
+
 ];
 
 @NgModule({

@@ -4,7 +4,7 @@ import { GestionarAreaComponent } from './gestionar-area/gestionar-area.componen
 
 const routes: Routes = [
   {
-    path: '', component: GestionarAreaComponent, data:{title: 'Gestionar area comun'}
+    path: '', component: GestionarAreaComponent, data: { title: 'Gestionar area comun' }
   },
 ];
 
@@ -12,4 +12,4 @@ const routes: Routes = [
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule],
 })
-export class GestionarAreaComunRoutingModule {}
+export class GestionarAreaComunRoutingModule { }

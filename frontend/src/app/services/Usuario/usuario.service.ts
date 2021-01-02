@@ -85,5 +85,9 @@ export class UsuarioService {
   actualizar(data){
     return this.httpClient.post<any>(this.url_API + '/actualizar', data);
   }
+
+  actualizarContrasena(data){
+    return this.httpClient.post<any>(this.url_API + '/contrasena', data);
+  }
   
 }

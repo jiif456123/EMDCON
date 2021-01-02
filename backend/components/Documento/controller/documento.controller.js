@@ -89,6 +89,15 @@ router.post('/actualizar', (req, res) => {
     }
 })
 
+router.post('/rechazar', (req, res) => {
+    let doc = req.body.documento;
+    let estado = req.body.estado;
+
+    docService.actualizarRechazar(doc,estado).then(
+        (data) => http.ok(req, res, code.status.Ok.code, data))
+        .catch(
+            (errorMessage) => http.err(req, res, code.status.Internal_Server_Error.code, errorMessage, errorMessage));
+})
 
 function generarId(length) {
     var result = '';

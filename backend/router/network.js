@@ -12,6 +12,7 @@ const registrarPaqueteController = require('../components/Registrar Paquete/cont
 const resiController = require('../components/Resi/controller/resi.controller')
 const visitaController = require('../components/Visita/controller/visita.controller')
 const documentoController = require('../components/Documento/controller/documento.controller')
+const contrasenaController = require('../components/contrasena/contrasena.controller')
 
 const rutas = function(app) {
     app.use('/user', userController)
@@ -28,6 +29,7 @@ const rutas = function(app) {
     app.use('/resi', resiController)
     app.use('/visita', visitaController)
     app.use('/documento', documentoController)
+    app.use('/contrasena', contrasenaController)
 }
 
 module.exports = rutas;

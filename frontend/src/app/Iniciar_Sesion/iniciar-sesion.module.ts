@@ -8,6 +8,8 @@ import { IniciarSesionComponent } from './iniciar-sesion/iniciar-sesion.componen
 import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SocketService } from '../services/socket/socket.service';
+import { CambiarContrasenaComponent } from './cambiar-contrasena/cambiar-contrasena.component';
+import { RecuperarContrasenaComponent } from './recuperar-contrasena/recuperar-contrasena.component';
 
 @NgModule({
   imports: [
@@ -21,7 +23,7 @@ import { SocketService } from '../services/socket/socket.service';
     ReactiveFormsModule 
   ],
   exports: [],
-  declarations: [IniciarSesionComponent],
+  declarations: [IniciarSesionComponent, CambiarContrasenaComponent, RecuperarContrasenaComponent],
   providers: [SocketService],
 })
 export class IniciarSesionModule { }
