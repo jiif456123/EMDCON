@@ -4,4 +4,5 @@ export class Documento {
     resumen: string;
     filePath: string;
     categoria: string;
+    estado: number;
 }

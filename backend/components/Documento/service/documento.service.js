@@ -7,6 +7,7 @@ let guardar = (dep) => {
         resumen: dep.resumen,
         filePath: dep.filePath,
         categoria: dep.categoria,
+        estado: 0
     })
     return new Promise((resolve, reject) => {
         newDoc.save(newDoc, (err, data) => {
@@ -35,7 +36,22 @@ var actualizar = (id1, body) => {
 
                     reject(err);
                 }
-                console.log(data);
+                resolve(data)
+            })
+    })
+}
+
+var actualizarRechazar = (id1, estado) => {
+    let id = id1
+    let estado1 = {
+        estado: estado,
+    }
+    return new Promise((resolve, reject) => {
+        documento.findByIdAndUpdate(id, estado1)
+            .exec((err, data) => {
+                if (err) {
+                    reject(err);
+                }
                 resolve(data)
             })
     })
@@ -44,5 +60,6 @@ var actualizar = (id1, body) => {
 module.exports = {
     crear: guardar,
     listar: listar,
-    actualizar: actualizar
+    actualizar: actualizar,
+    actualizarRechazar: actualizarRechazar
 }
