@@ -66,28 +66,32 @@ export class UsuarioService {
     this.router.navigate(['/iniciarsesion'])
   }
 
-  listarAdmin(){
+  listarAdmin() {
     return this.httpClient.get<any>(this.url_API + '/admin');
   }
 
-  listarResidente(){
+  listarResidente() {
     return this.httpClient.get<any>(this.url_API + '/residente');
   }
 
-  listar(){
+  listar() {
     return this.httpClient.get<any>(this.url_API);
   }
 
-  registrar(usuario){
+  registrar(usuario) {
     return this.httpClient.post<any>(this.url_API, usuario);
   }
 
-  actualizar(data){
+  actualizar(data) {
     return this.httpClient.post<any>(this.url_API + '/actualizar', data);
   }
 
-  actualizarContrasena(data){
+  actualizarContrasena(data) {
     return this.httpClient.post<any>(this.url_API + '/contrasena', data);
   }
-  
+
+  validar(data) {
+    return this.httpClient.post<any>(this.url_API + '/validar', data);
+  }
+
 }

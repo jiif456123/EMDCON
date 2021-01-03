@@ -13,13 +13,14 @@ import swal from 'sweetalert2';
 })
 export class CambiarContrasenaComponent implements OnInit {
 
-  formCorreo:FormGroup;
+  formCorreo: FormGroup;
   constructor(
-    private router: Router, 
+    private router: Router,
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
-    private contraService: contrasenaService
-    ) { }
+    private contraService: contrasenaService,
+    private userService: UsuarioService
+  ) { }
 
   ngOnInit(): void {
 
@@ -28,8 +29,8 @@ export class CambiarContrasenaComponent implements OnInit {
     })
   }
 
-  Enviar(){
-    if(this.formCorreo.invalid){
+  Enviar() {
+    if (this.formCorreo.invalid) {
       return;
     }
 
@@ -37,11 +38,19 @@ export class CambiarContrasenaComponent implements OnInit {
     var query = {
       correo: datos.txtCorreo
     }
-    this.contraService.registrar(query).subscribe(data=>{
-      swal('Correcto', 'Se envio el correo, revise su Spam', 'success').then(r=>{
-        this.router.navigate(['/iniciarsesion']);
-      })
 
+    this.userService.validar(query).subscribe(data => {
+      if (data.data.existe == false) {
+        swal('Error', 'No existe el correo', 'error');
+      } else {
+        //si existe hacemos el proceso
+        this.contraService.registrar(query).subscribe(data => {
+          swal('Correcto', 'Se envio el correo, revise su Spam', 'success').then(r => {
+            this.router.navigate(['/iniciarsesion']);
+          })
+
+        })
+      }
     })
 
   }

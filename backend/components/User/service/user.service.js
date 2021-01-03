@@ -81,7 +81,7 @@ var modificarUsuarios = (id, usuario) => {
 
 var cambiarContresena = (correo, contresena) => {
     var password1 = bcrypt.hashSync(contresena, 10)
-    
+
     return new Promise((resolve, reject) => {
         User.findOneAndUpdate({ username: correo }, { $set: { password: password1 } }, (err, usuarios) => {
 
@@ -93,11 +93,30 @@ var cambiarContresena = (correo, contresena) => {
     });
 };
 
+var validarUsuario = (correo) => {
+
+    let query = {
+        username: correo
+    };
+
+    return new Promise((resolve, reject) => {
+        User.exists(query).then((list) => {
+            let res = {
+                existe: list
+            }
+            resolve(res);
+        }).catch(err => {
+            reject(err)
+        });
+    });
+};
+
 module.exports = {
     listar: listarUsuarios,
     registrar: registarUsuario,
     modificar: modificarUsuarios,
     listarResidente: listarResidente,
     listarAdmin: listarAdmin,
-    cambiarContresena: cambiarContresena
+    cambiarContresena: cambiarContresena,
+    validarUsuario: validarUsuario
 };
