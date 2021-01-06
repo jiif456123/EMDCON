@@ -64,4 +64,8 @@ export class IniciarSesionComponent implements OnInit {
       txtContrasena: ['', Validators.required],
     })
   }
+
+  cambiarContrasena(){
+    this.router.navigate(['/iniciarsesion/cambiocontrasena'])
+  }
 }

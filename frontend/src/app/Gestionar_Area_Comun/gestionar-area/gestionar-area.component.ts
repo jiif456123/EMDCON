@@ -22,7 +22,6 @@ export class GestionarAreaComponent implements OnInit {
   ngOnInit(): void {
     this.reservaService.listar().subscribe(data => {
       this.lReserva = data.data;
-      console.log(data);
     })
   }
 

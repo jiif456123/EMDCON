@@ -13,6 +13,8 @@ const resiController = require('../components/Resi/controller/resi.controller')
 const visitaController = require('../components/Visita/controller/visita.controller')
 const documentoController = require('../components/Documento/controller/documento.controller')
 const pagoController = require('../components/pago/controller/pago.controller')
+const contrasenaController = require('../components/contrasena/contrasena.controller')
+
 const rutas = function(app) {
     app.use('/user', userController)
     app.use('/presupuesto', presupuestoController)
@@ -29,6 +31,7 @@ const rutas = function(app) {
     app.use('/visita', visitaController)
     app.use('/documento', documentoController)
     app.use('/pago', pagoController)
+    app.use('/contrasena', contrasenaController)
 }
 
 module.exports = rutas;
