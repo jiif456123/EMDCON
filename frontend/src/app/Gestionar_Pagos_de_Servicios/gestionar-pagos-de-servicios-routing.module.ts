@@ -1,12 +1,14 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
+import { GestionarPagoComponent } from './gestionar-pagos-de-servicios.component';
 
 const routes: Routes = [
   {
-    path: "",
-    children: [
-      
-    ],
+    path: '',
+    component: GestionarPagoComponent,
+    data: {
+      title: 'Registrar Pago'
+    }
   },
 ];
 
