@@ -6,8 +6,12 @@ var paquete = new Schema({
     cantidad: { type: Number },
     descripcion: { type: String },
     fechaEmitida: { type: Date },
-    estado: { type: String },
-
+    estado: { type: Number },
+    resi: {
+        type: Schema.Types.ObjectId,
+        ref: 'Resi',
+        required: [true, ' El residente debe ser necesario ']
+    }
 
 }, {
     versionKey: false

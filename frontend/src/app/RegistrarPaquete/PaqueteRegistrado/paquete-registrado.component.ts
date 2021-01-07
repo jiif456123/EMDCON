@@ -5,6 +5,8 @@ import { Router, ActivatedRoute, Params } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { PaqueteService } from '../../services/registrarpaquete/registrar-paquete.service';
 import { Registrarpaquete } from '../../models/registrar-paquete';
+import { Resi } from '../../models/resi.model';
+import { ResiService } from '../../services/Resi/resi.service';
 
 
 //declare function init_plugins();
@@ -28,11 +30,14 @@ export class PaqueteRegistradoComponent implements OnInit {
   cantidadAux: boolean;
   descripcionAux: boolean;
   fechaEmitidaAux: boolean;
+  resis:ResiService;
+  id_resi:string=localStorage.getItem('id');
   
   constructor(
     private paqueteService: PaqueteService,
     private router: Router,
     private activateRoute: ActivatedRoute,
+    private resiservive: ResiService,
   ) { }
 
   ngOnInit() {
@@ -42,12 +47,20 @@ export class PaqueteRegistradoComponent implements OnInit {
     this.paqueteService.listar().subscribe(data => {
       this.paquetes = data.data;
     })
+    this.resiservive.listar().subscribe(data=>{
+      this.resis=data.data;
+    })
     this.formPaquete = new FormGroup({
       '_id': new FormControl(''),
       'cantidad': new FormControl('', Validators.required),
-      'estado': new FormControl('No Recibido', Validators.required),
+      'estado': new FormControl(0, Validators.required),
       'descripcion': new FormControl('', Validators.required),
       'fechaEmitida': new FormControl('', Validators.required),
+      'id_resi': new FormControl(''),
+      'nombre': new  FormControl(''),
+      'ndepartamento': new  FormControl(''),
+      'fecha': new  FormControl(''),
+      'monto': new  FormControl(0),
       
     });
 

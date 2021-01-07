@@ -66,4 +66,10 @@ export const ROUTES: RouteInfo[] = [
       path: '/registrarpaquete', rol:'RESIDENTE', title: 'Registrar Paquete', icon: 'zmdi zmdi-home text-primary', class: '', badge: '', badgeClass: 'badge badge-success badge-pill float-right mr-1 mt-1', isExternalLink: false,
       submenu: []
     },
+    {
+        path: '/consultarpaquete', rol:'PORTERIA', title: 'Consultar Paquete', icon: 'zmdi zmdi-home text-primary', class: '', badge: '', badgeClass: 'badge badge-success badge-pill float-right mr-1 mt-1', isExternalLink: false,
+        submenu: []
+      },
+      
+      
 ];
