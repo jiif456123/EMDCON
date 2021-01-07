@@ -5,13 +5,15 @@ import { switchMap } from 'rxjs/operators';
 import { Pago } from '../../models/pago.model';
 import { PagoService } from '../../services/pago/pago.service';
 import swal from 'sweetalert2';
+import { DatePipe } from '@angular/common';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 //declare function init_plugins();
-interface HtmlInputEvent extends Event{
-  target : HTMLInputElement & EventTarget;
+interface HtmlInputEvent extends Event {
+  target: HTMLInputElement & EventTarget;
 }
 
-declare var jQuery:any;
-declare var $:any;
+declare var jQuery: any;
+declare var $: any;
 
 @Component({
   selector: 'app-registro',
@@ -38,20 +40,22 @@ export class RegistroComponent implements OnInit {
   montoAux: boolean;
   fotoAux: boolean;
   formFile: FormGroup;
+
+  previsualizarImg;
   constructor(
-    private pagoService : PagoService,
+    private pagoService: PagoService,
     private router: Router,
     private activateRoute: ActivatedRoute,
+    public datepipe: DatePipe,
+    private modalService: NgbModal,
   ) { }
 
   ngOnInit() {
     //init_plugins();
     //Inicializar el arreglo: []
     this.pagos = [];
-    console.log(this.pagos)
     this.pagoService.listar().subscribe(data => {
       this.pagos = data.data;
-      console.log(data.data)
     })
 
     this.formPago = new FormGroup({
@@ -75,37 +79,6 @@ export class RegistroComponent implements OnInit {
     return this.formPago.get(field).invalid && this.formPago.get(field).touched;
   };
 
-  operar() {
-
-    console.log(this.formPago.valid)
-    console.log(this.formPago.invalid)
-    console.log(this.formPago.value)
-      if (this.editar) {
-        this.formPago.value;
-        console.log(this.formPago.value)
-        this.pagoService.actualizarPago(this.formPago.value).pipe(switchMap(() => {
-          return this.pagoService.listar();
-        })).subscribe(data => {
-          console.log(data)
-          this.pagoService.pagoCambio.next(data);
-          this.pagoService.mensajeCambio.next('Pago actualizado');
-        });
-        //todo respecto a editar
-      } else {
-        this.pagoService.registrarPago(this.formPago.value).pipe(switchMap(() => {
-          return this.pagoService.listar();
-        })).subscribe(data => {
-          console.log(data)
-          this.pagoService.pagoCambio.next(data);
-          this.pagoService.mensajeCambio.next('Pago registrado');
-        });
-      }
-
-
-    this.router.navigate(['/registrarpagosdeservicios']);
-
-  }
-
   cargarFormulario() {
 
     if (this.editar) {
@@ -115,40 +88,19 @@ export class RegistroComponent implements OnInit {
         this.formPago = new FormGroup({
           '_id': new FormControl(this.pago._id, Validators.required),
           'nombre': new FormControl(this.pago.nombre, Validators.required),
-          'fechapago': new FormControl(this.pago.fechapago, Validators.required),
+          'fechapago': new FormControl(this.datepipe.transform(this.pago.fechapago, 'yyyy-MM-ddThh:mm'), Validators.required),
           'cta': new FormControl(this.pago.cta, Validators.required),
           'estado': new FormControl(this.pago.estado, Validators.required),
           'monto': new FormControl(this.pago.monto, Validators.required),
-          'foto': new FormControl(this.pago.foto, Validators.required),
         });
       });
     }
   }
 
-  imgSelected(event: HtmlInputEvent) {
-    if (event.target.files && event.target.files[0]) {
-      this.file = <File>event.target.files[0];
-
-      const reader = new FileReader();
-      reader.onload = e => this.imgSelect = reader.result;
-      reader.readAsDataURL(this.file);
-      $('.cz-file-drop-icon').addClass('cz-file-drop-preview img-thumbnail rounded');
-      $('.cz-file-drop-icon').removeClass('cz-file-drop-icon czi-cloud-upload');
-
-    }
-
-
-
-  }
-
   handleFile(event) {
     this.file = event;
-
   }
 
-  handleFileAct(event) {
-    this.fileAct= event;
-  }
 
   onSubmit() {
 
@@ -157,11 +109,11 @@ export class RegistroComponent implements OnInit {
       return;
     }
 
-    if (this.formFile.invalid) {
+    if (this.formPago.invalid) {
       swal('Error', 'Llene los datos!', 'warning')
       return;
     }
-    var vDatos = this.formFile.value;
+    var vDatos = this.formPago.value;
 
     const reader = new FileReader();
 
@@ -170,26 +122,97 @@ export class RegistroComponent implements OnInit {
     reader.onload = () => {
       let query = {
         file: reader.result,
-        documento: {
+        pago: {
           nombre: vDatos.nombre,
-          resumen: vDatos.resumen,
+          fechapago: vDatos.fechapago,
+          monto: vDatos.monto,
           foto: '',
-          categoria: vDatos.categoria
+          cta: vDatos.cta,
+          estado: 0
         },
         nameFile: this.file[0].name
       }
       this.pagoService.insertar(query).subscribe(res => {
         this.pagoService.listar().subscribe(data => {
           swal('Exito', 'Se inserto correctamente', 'success')
+          this.formPago.reset();
           this.pagos = data.data;
-          this.formFile.reset();
         })
+      }, err => {
+
+      }, () => {
+        this.router.navigate(['/registrarpagosdeservicios']);
       })
     }
   }
 
-  descargar(fileAct) {
-    this.pagoService.descargar(fileAct);
+  actualizar() {
+    if (this.formPago.invalid) {
+      swal('Error', 'Llene los datos!', 'warning')
+      return;
+    }
+
+    if (this.file == null) {
+      var vDatos = this.formPago.value;
+      let query = {
+        pago: {
+          nombre: vDatos.nombre,
+          fechapago: vDatos.fechapago,
+          monto: vDatos.monto,
+          cta: vDatos.cta,
+        },
+      }
+      this.pagoService.actualizarPago(this.pago._id, query).subscribe(res => {
+        swal('Exito', 'Se actualizo correctamente', 'success')
+        this.router.navigate(['/registrarpagosdeservicios']);
+      })
+
+    } else {
+      var vDatos = this.formPago.value;
+
+      const reader = new FileReader();
+
+      reader.readAsDataURL(this.file[0]);
+
+      reader.onload = () => {
+        let query = {
+          file: reader.result,
+          pago: {
+            nombre: vDatos.nombre,
+            fechapago: vDatos.fechapago,
+            monto: vDatos.monto,
+            foto: '',
+            cta: vDatos.cta,
+            estado: 0
+          },
+          nameFile: this.file[0].name
+        }
+        this.pagoService.actualizarPago(this.pago._id, query).subscribe(res => {
+          swal('Exito', 'Se actualizo correctamente', 'success')
+          this.router.navigate(['/registrarpagosdeservicios']);
+
+        })
+      }
+    }
+  }
+
+  verPreview(content) {
+    this.modalService.open(content);
+
+    this.pagoService.mostrarImagen(this.pago.foto).subscribe(res => {
+      this.createImageFromBlob(res);
+    })
+  }
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.previsualizarImg = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
   }
 
 }

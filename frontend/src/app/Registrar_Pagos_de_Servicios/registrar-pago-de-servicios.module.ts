@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, DatePipe } from "@angular/common";
 
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { ChartsModule } from "ng2-charts";
@@ -13,6 +13,6 @@ import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule } 
   imports: [CommonModule, ResgistrarPagodeServiciosRoutingModule, NgbModule, ChartsModule, FilterPipeModule, FormsModule, ReactiveFormsModule, Ng2FilterPipeModule],
   exports: [RegistrarPagoComponent],
   declarations: [RegistrarPagoComponent,RegistroComponent],
-  providers: [],
+  providers: [DatePipe],
 })
 export class RegistrarPagodeServiciosModule {}

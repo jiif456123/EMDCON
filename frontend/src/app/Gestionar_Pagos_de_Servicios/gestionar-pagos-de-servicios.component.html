@@ -27,40 +27,49 @@
                             </ng-container>
                         </th>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm btn-block" (click)="fnAbrirModal(content); fnSeleccionar(p)">
-                      <i class="mdi mdi-update mdi-18px">Ver</i>
-                  </button>
+                            <button class="btn btn-success btn-sm btn-block"
+                                (click)="fnAbrirModal(content); fnSeleccionar(p)">
+                                <i class="mdi mdi-update mdi-18px">Ver</i>
+                            </button>
                         </td>
                         <td class="text-center">
-                            <button [disabled]="p.estado==1 || p.estado==2" type="submit" (click)="aceptarSolicitud (p,1)" class="btn btn-success btn-sm btn-block" routerLink="/gestionarpagosdeservicios">
-                    <i class="mdi mdi-update mdi-18px">Aprobar</i>
-                </button>
+                            <button [disabled]="p.estado==1 || p.estado==2" type="submit"
+                                (click)="aceptarSolicitud (p,1)" class="btn btn-success btn-sm btn-block"
+                                routerLink="/gestionarpagosdeservicios">
+                                <i class="mdi mdi-update mdi-18px">Aprobar</i>
+                            </button>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm btn-block" (click)="eliminarPago(p._id)" routerLink="/gestionarpagosdeservicios">
-                  <i class="mdi mdi-update mdi-18px">Eliminar</i>
-              </button>
+                            <button class="btn btn-success btn-sm btn-block" (click)="eliminarPago(p._id)"
+                                routerLink="/gestionarpagosdeservicios">
+                                <i class="mdi mdi-update mdi-18px">Eliminar</i>
+                            </button>
                         </td>
                         <td class="text-center">
-                            <button class="btn btn-success btn-sm btn-block">
-                    <i class="mdi mdi-update mdi-18px">Descargar</i>
-                </button>
+                            <button class="btn btn-success btn-sm btn-block" (click)="descargar(p.foto)">
+                                <i class="mdi mdi-update mdi-18px">Descargar</i>
+                            </button>
                         </td>
+                    </tr>
+                </table>
+            </div>
+        </table>
+    </div>
+</div>
 
+<ng-template #content let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">VER DETALLE DEL REGISTRO DE PAGO</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true"> × </span>
+        </button>
+    </div>
+    <div class="modal-body">
 
-                        <ng-template #content let-modal>
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="modal-basic-title">VER DETALLE DEL REGISTRO DE PAGO</h4>
-                                <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
-                      <span aria-hidden="true"> × </span>
-                    </button>
-                            </div>
-                            <div class="modal-body">
-
-                                <p class="text-center">Nombre del residente: {{ pag?.nombre }}</p>
-                                <p class="text-center">Cuenta bancaria del residente: {{ pag?.cta }}</p>
-                                <p class="text-center">Monto: {{ pag?.monto }}</p>
-                                <p class="text-center">Fecha de pago: {{ pag?.fechapago | date: "dd/MM/yyyy"}}</p>
-                                <img class="card-img-top img-responsive" src="{{pag?.foto}}" alt="Card image cap">
-                            </div>
-                        </ng-template>
+        <p class="text-center">Nombre del residente: {{ pag?.nombre }}</p>
+        <p class="text-center">Cuenta bancaria del residente: {{ pag?.cta }}</p>
+        <p class="text-center">Monto: {{ pag?.monto }}</p>
+        <p class="text-center">Fecha de pago: {{ pag?.fechapago | date: "dd/MM/yyyy"}}</p>
+        <img class="card-img-top img-responsive" [src]="previsualizarImg" alt="Card image cap">
+    </div>
+</ng-template>
