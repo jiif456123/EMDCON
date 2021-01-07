@@ -24,6 +24,8 @@ export class GestionarPagoComponent implements OnInit {
   pagol: Pago[];
   pag: Pago;
   term: any;
+
+  previsualizarImg;
   constructor(
     private ActivatedRoute: ActivatedRoute,
     private router: Router,
@@ -45,6 +47,9 @@ export class GestionarPagoComponent implements OnInit {
 
   fnSeleccionar(p: Pago) {
     this.pag = p;
+    this.PagoService.mostrarImagen(p.foto).subscribe(res => {
+      this.createImageFromBlob(res);
+    })
   }
 
   rechazarSolicitud(pago: Pago, estado: number) {
@@ -71,6 +76,7 @@ export class GestionarPagoComponent implements OnInit {
       }
     })
   }
+  
   aceptarSolicitud(pago: Pago, estado: number) {
     alerta({
       text: 'Estas seguro de aceptar el pago?',
@@ -96,26 +102,42 @@ export class GestionarPagoComponent implements OnInit {
     })
   }
 
-  eliminarPago( _id: string ){
+  eliminarPago(_id: string) {
 
     alerta({
-     text: '¿Está seguro que desea eliminar el pago?',
-     icon: 'warning',
-     buttons: ['Cancelar','Aceptar'],
-     dangerMode: true
-    }).then((willDelete)=>{
-      if(willDelete){
-        this.PagoService.eliminar(_id).pipe(switchMap(()=>{
+      text: '¿Está seguro que desea eliminar el pago?',
+      icon: 'warning',
+      buttons: ['Cancelar', 'Aceptar'],
+      dangerMode: true
+    }).then((willDelete) => {
+      if (willDelete) {
+        this.PagoService.eliminar(_id).pipe(switchMap(() => {
           return this.PagoService.listar();
-        })).subscribe(data =>{
+        })).subscribe(data => {
           this.PagoService.pagoCambio.next(data);
           this.PagoService.mensajeCambio.next('El pago ha sido eliminado');
         });
-      } else{
+      } else {
         alerta('El pago no ha sido cancelado'),
-        {icon: 'info'}
+          { icon: 'info' }
       }
     })
     this.router.navigate(['/gestionarpagosdeservicios']);
- };
+  };
+
+  createImageFromBlob(image: Blob) {
+    let reader = new FileReader();
+    reader.addEventListener("load", () => {
+      this.previsualizarImg = reader.result;
+    }, false);
+
+    if (image) {
+      reader.readAsDataURL(image);
+    }
+  }
+
+  descargar(fileAct) {
+    this.PagoService.descargar(fileAct);
+  }
+
 }

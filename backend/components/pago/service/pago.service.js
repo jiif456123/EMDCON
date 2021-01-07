@@ -33,11 +33,10 @@ var registarPago = (pago) => {
         nombre: pago.nombre,
         fechapago: pago.fechapago,
         cta: pago.cta,
-        estado: pago.estado,
+        estado: 0,
         monto: pago.monto,
         foto: pago.foto,
     });
-
     return new Promise((resolve, reject) => {
         objPago.save(objPago, (err, pago) => {
             if (err) reject(err);
@@ -47,8 +46,6 @@ var registarPago = (pago) => {
 };
 
 var modificarPago = (id, pago) => {
-
-    console.log(pago, ' [pago]');
 
     return new Promise((resolve, reject) => {
         Pago.findByIdAndUpdate(id, pago, (err, pagos) => {

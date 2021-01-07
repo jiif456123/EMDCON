@@ -22,17 +22,19 @@ export class PagoService {
     return this.http.get<any>(`${this.url_API}`);
   };
 
-  getPago(){
+  getPago() {
     return this.http.get<Pago[]>(this.url_API);
   }
 
-  registrarPago(pago: any){
+  registrarPago(pago: any) {
     return this.http.post<any>(this.url_API, pago);
   }
-  actualizarPago(pago: Pago) {
-    return this.http.put(this.url_API + `/${pago._id}`, pago);
+  actualizarPago(id, pago) {
+    console.log(id);
+    console.log(pago)
+    return this.http.put(this.url_API + '/' + id, pago);
   }
-  listarPagoId(id: string){
+  listarPagoId(id: string) {
     return this.http.get<any>(`${this.url_API}/${id}`);
   }
 
@@ -45,8 +47,7 @@ export class PagoService {
     objPago.estado = pago.estado;
     objPago.monto = pago.monto;
     objPago.foto = pago.foto;
-    console.log(objPago);
-    return this.http.put(this.url_API + `/${objPago._id}`,objPago);
+    return this.http.put(this.url_API + `/${objPago._id}`, objPago);
   }
 
   rechazarVisita(pago: Pago) {
@@ -70,20 +71,25 @@ export class PagoService {
 
   descargar(fileName) {
     this.http.get(this.url_API + '/file/' + fileName, { responseType: 'blob' }).subscribe(res => {
-        window.open(window.URL.createObjectURL(res));
+      window.open(window.URL.createObjectURL(res));
     });
-}
+  }
 
-insertar(obj) {
-  return this.http.post<any>(this.url_API, obj);
-}
+  mostrarImagen(fileName) {
+    return this.http.get(this.url_API + '/file/' + fileName, { responseType: 'blob' });
+  }
 
-actualizar(obj) {
-  return this.http.post<any>(this.url_API+'/actualizar', obj);
-}
 
-rechazar(obj) {
-  return this.http.post<any>(this.url_API+'/rechazar', obj);
-}
+  insertar(obj) {
+    return this.http.post<any>(this.url_API, obj);
+  }
+
+  actualizar(obj) {
+    return this.http.post<any>(this.url_API + '/actualizar', obj);
+  }
+
+  rechazar(obj) {
+    return this.http.post<any>(this.url_API + '/rechazar', obj);
+  }
 
 }
