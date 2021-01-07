@@ -94,6 +94,11 @@ export const Full_ROUTES: Routes = [
         path: 'registrarpaquete',
         loadChildren: () => import('../../RegistrarPaquete/registrar-paquete-servicios.module').then(m => m.RegistrarPaqueteModule)
     },
+    {
+        canActivate: [LoginGuard],
+        path: 'consultarpaquete',
+        loadChildren: () => import('../../Consultar_Paquete/consultar-paquete.module').then(m => m.ConsultarPaqueteModule)
+    },
     /* {
       path: 'nuevopresupuesto/:id',
       loadChildren: () => import('../../Gestionar_Presupuesto/RegistrarPresupuesto/registrar-presupuesto.module').then(m => m.RegistrarPresupuestoModule)

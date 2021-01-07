@@ -38,4 +38,19 @@ export class PaqueteService {
   eliminar(_id: string) {
     return this.http.delete<any>(`${this.url_API}/${_id}`);
   };
+
+  aceptarPaquete(paquete: Registrarpaquete) {
+
+    let objPaquete = new Registrarpaquete();
+    objPaquete._id = paquete._id;
+    objPaquete.cantidad = paquete.cantidad;
+    objPaquete.descripcion = paquete.descripcion;
+    objPaquete.fechaEmitida = paquete.fechaEmitida;
+    objPaquete.estado = paquete.estado;
+    objPaquete.resi = paquete.resi;
+    console.log(objPaquete);
+    return this.http.put(this.url_API + `/${objPaquete._id}`, objPaquete);
+  };
+  
+  
 }

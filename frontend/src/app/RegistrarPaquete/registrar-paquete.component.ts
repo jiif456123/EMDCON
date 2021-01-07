@@ -64,4 +64,6 @@ export class RegistroPaqueteComponent implements OnInit {
      })
      this.router.navigate(['/registrarpaquete']);
   };
+
+  
 }

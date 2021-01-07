@@ -2,13 +2,13 @@ var Paquete = require('../model/registrarpaquete.model');
 
 var listarPaquete = () => {
 
-    let query = {
-        estado: { $ne: 3 }
-    };
     return new Promise((resolve, reject) => {
-        Paquete.find(query).exec((err, listarPaquete) => {
-            if (err) reject(err);
-            resolve(listarPaquete);
+
+        Paquete.find({}).populate('resi').exec((err, paquetes) => {
+            if (err) {
+                reject(err);
+            }
+            resolve(paquetes)
         });
     });
 };
@@ -16,11 +16,9 @@ var listarPaqueteId = (id) => {
 
     return new Promise((resolve, reject) => {
 
-        Paquete.findById(id)
+        Paquete.findById(id).populate('resi')
             .exec((err, paquete) => {
                 if (err) reject(err);
-
-                console.log(paquete)
                 resolve(paquete);
             })
 
@@ -34,6 +32,7 @@ var registarPaquete = (paquete) => {
         descripcion: paquete.descripcion,
         fechaEmitida: paquete.fechaEmitida,
         estado: paquete.estado,
+        resi: paquete.resi,
     });
 
     return new Promise((resolve, reject) => {
@@ -68,6 +67,8 @@ var eliminarPaquete = (id) => {
         })
     })
 }
+
+
 
 module.exports = {
     listar: listarPaquete,
