@@ -43,7 +43,7 @@ export const ROUTES: RouteInfo[] = [
         submenu: []
     },
     {
-        path: '/gestionarpagosdeservicios', rol:'ADMIN', title: 'Gestionar Pagos de serivicios', icon: 'zmdi zmdi-home text-primary', class: '', badge: '', badgeClass: 'badge badge-success badge-pill float-right mr-1 mt-1', isExternalLink: false, 
+        path: '/gestionarpagosdeservicios', rol:'ADMIN', title: 'Gestionar Pagos de servicios', icon: 'zmdi zmdi-home text-primary', class: '', badge: '', badgeClass: 'badge badge-success badge-pill float-right mr-1 mt-1', isExternalLink: false, 
         submenu: []
     },
     {
